@@ -8,6 +8,17 @@ in{
     };
   };
 
+  gtk = {
+    enable = true;
+    theme = {
+      name = "gruvbox";
+      # name = "Catppuccin-Frappe-Standard-Blue-light";
+      package = pkgs.gruvbox-gtk-theme;
+    };
+    iconTheme.package = pkgs.gruvbox-dark-icons-gtk;
+    iconTheme.name = "Gruvbox-Dark-Icons";
+  };
+
   home.username = "rodrigo";
   home.homeDirectory = "/home/rodrigo";
 
@@ -27,10 +38,10 @@ in{
     pkgs.opentabletdriver
     pkgs.xdg-desktop-portal
     pkgs.papirus-icon-theme
-    pkgs.libsForQt5.dolphin
+    pkgs.xfce.thunar 
     pkgs.libsForQt5.okular
     pkgs.qt6Packages.qtstyleplugin-kvantum
-
+    pkgs.candy-icons
 
     #Miscelanea
     pkgs.neofetch
@@ -49,7 +60,6 @@ in{
     ./programs/kitty.nix
     ./programs/starship.nix
     ./programs/rofi.nix
-    ./programs/plasma.nix
     ./programs/git.nix
   ];
 
@@ -72,6 +82,4 @@ in{
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-
 }
