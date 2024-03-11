@@ -5,6 +5,29 @@
     theme = "/home/rodrigo/.config/rofi/launcher.rasi";
   };
 
+  home.file.".config/rofi/launcher.sh" = {
+    text = ''
+    #!/usr/bin/env bash
+  
+  ## Author : Aditya Shakya (adi1090x)
+  ## Github : @adi1090x
+  #
+  ## Rofi   : Launcher (Modi Drun, Run, File Browser, Window)
+  #
+  ## Available Styles
+  #
+  ## style-1     style-2     style-3     style-4     style-5
+  
+  dir="$HOME/.config/rofi/"
+  
+  ## Run
+  rofi \
+      -show drun \
+      -theme ''${dir}/config.rasi
+    '';
+   executable = true;
+ };
+
   home.file.".config/rofi/launcher.rasi".text = ''
 	/**
 	 *
@@ -49,7 +72,7 @@
 	    padding:                     0px;
 	    border-radius:               10px;
 	    cursor:                      "default";
-	    background-color:            #${config.colorScheme.palette.base01}88;
+	    background-color:            #${config.colorScheme.palette.base01}aa;
 	}
 
 	/*****----- Main Box -----*****/
@@ -74,20 +97,20 @@
 	    enabled:                     true;
 	    expand:                      false;
 	    padding:                     12px 16px;
-	    border:                      2px;
+	    border:                      1px;
 	    border-radius:               10px;
 	    border-color:                #${config.colorScheme.palette.base00};
-	    background-color:            #${config.colorScheme.palette.base02};
+	    background-color:            #${config.colorScheme.palette.base02}22;
 	    text-color:                  #${config.colorScheme.palette.base07};
 	    str:                         "";
 	}
 	entry {
 	    enabled:                     true;
 	    padding:                     12px 16px;
-	    border:                      2px;
+	    border:                      1px;
 	    border-radius:               10px;
 	    border-color:                #${config.colorScheme.palette.base00};
-	    background-color:            #${config.colorScheme.palette.base02};
+	    background-color:            #${config.colorScheme.palette.base02}22;
 	    text-color:                  #${config.colorScheme.palette.base07};
 	    cursor:                      text;
 	    placeholder:                 "Search...";

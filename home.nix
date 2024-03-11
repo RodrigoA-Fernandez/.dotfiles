@@ -11,9 +11,8 @@ in{
   gtk = {
     enable = true;
     theme = {
-      name = "gruvbox";
-      # name = "Catppuccin-Frappe-Standard-Blue-light";
-      package = pkgs.gruvbox-gtk-theme;
+      name = "adw-gtk3";
+      package = pkgs.adw-gtk3;
     };
     iconTheme.package = pkgs.gruvbox-dark-icons-gtk;
     iconTheme.name = "Gruvbox-Dark-Icons";
@@ -55,6 +54,7 @@ in{
 
   imports = [
     inputs.nix-colors.homeManagerModules.default
+    ./programs/waybar.nix
     ./programs/zsh.nix
     ./programs/hyprland.nix
     ./programs/kitty.nix
