@@ -1,13 +1,12 @@
 { config, pkgs, inputs, ... }:
-
-{
+let
+in{
   nixpkgs = {
     config = {
       allowUnfree = true;
       allowUnfreePredicate = (_: true);
     };
   };
-
 
   home.username = "rodrigo";
   home.homeDirectory = "/home/rodrigo";
@@ -21,18 +20,27 @@
     pkgs.netbeans
     pkgs.firefox
     pkgs.xournalpp
-    pkgs.libsForQt5.okular
-
+    
     #SO
     pkgs.waybar
     pkgs.eww
     pkgs.opentabletdriver
+    pkgs.xdg-desktop-portal
+    pkgs.papirus-icon-theme
+    pkgs.libsForQt5.dolphin
+    pkgs.libsForQt5.okular
+    pkgs.qt6Packages.qtstyleplugin-kvantum
 
 
     #Miscelanea
     pkgs.neofetch
     pkgs.wl-clipboard
   ];
+
+  home.sessionVariables = {
+    GTK_USE_PORTAL = "1";
+    EDITOR = "nvim";
+  };
 
   imports = [
     inputs.nix-colors.homeManagerModules.default
@@ -41,6 +49,7 @@
     ./programs/kitty.nix
     ./programs/starship.nix
     ./programs/rofi.nix
+    ./programs/plasma.nix
     ./programs/git.nix
   ];
 
@@ -60,9 +69,6 @@
   };
 
   
-  home.sessionVariables = {
-     EDITOR = "nvim";
-  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
