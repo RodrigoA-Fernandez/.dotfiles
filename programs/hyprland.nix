@@ -9,6 +9,7 @@ in{
 
     systemd.enable = true;
     settings = {
+        exec-once = ["syncthing"];
         input = {
             kb_layout = "es";
 

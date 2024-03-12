@@ -4,19 +4,7 @@
     home.packages = [
       pkgs.mpc-cli
     ];
-    programs.cava.enable = true;
-    services.mpd = {
-      enable = true;
-      musicDirectory = "~/Music";
-      extraConfig = ''
-        audio_output {
-          type "pipewire"
-          name "Salida Musica"
-        }
-      '';
     
-      network.listenAddress = "any"; 
-    };
     programs.waybar = {
       enable = true;
       systemd = {
@@ -89,7 +77,7 @@
                  padding-right: 6px;
                  color: #7ebae4;
                }
-         #mode, #clock, #memory, #temperature,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #custom-cava-internal {
+         #mode, #clock, #memory, #temperature,#cpu,  #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu  {
                  padding-left: 10px;
                  padding-right: 10px;
                }
@@ -106,9 +94,6 @@
         /* #idle_inhibitor {
                  color: rgb(221, 182, 242);
                }*/
-         #custom-wall {
-                 color: #${config.colorScheme.palette.base0C};
-            }
          #temperature {
                  color: #${config.colorScheme.palette.base09};
                }
@@ -138,19 +123,7 @@
                  padding-right: 8px;
                  padding-left: 10px;
                }
-         #mpd.paused {
-                 color: #414868;
-                 font-style: italic;
-               }
-         #mpd.stopped {
-                 background: transparent;
-               }
-         #mpd {
-                 color: #c0caf5;
-               }
-         #custom-cava-internal{
-                 font-family: "Hack Nerd Font" ;
-               }
+         
       '';
       settings = [{
         "layer" = "top";
@@ -160,9 +133,6 @@
           "hyprland/workspaces"
           "temperature"
           #"idle_inhibitor"
-          "custom/wall"
-          "mpd"
-          "custom/cava-internal"
         ];
         modules-center = [
           "clock"
@@ -182,17 +152,8 @@
            "on-click" = "rofi -show drun -config /home/rodrigo/.config/rofi/config.rasi";
           "tooltip" = false;
         };
-        "custom/wall" = {
-          "on-click" = "wallpaper_random";
-          "on-click-middle" = "default_wall";
-          "on-click-right" = "killall dynamic_wallpaper || dynamic_wallpaper &";
-          "format" = " 󰠖 ";
-          "tooltip" = false;
-        };
-        "custom/cava-internal" = {
-          "exec" = "sleep 1s && cava-internal";
-          "tooltip" = false;
-        };
+        
+        
         "hyprland/workspaces" = {
           "format" = "{icon}";
           "on-click" = "activate";
@@ -209,13 +170,14 @@
         };
         "backlight" = {
           "device" = "intel_backlight";
-          "on-scroll-up" = "${pkgs.light}/bin/light -A 5";
-          "on-scroll-down" = "${pkgs.light}/bin/light -U 5";
+          "on-scroll-down" = "${pkgs.light}/bin/light -A 7";
+          "on-scroll-up" = "${pkgs.light}/bin/light -U 7";
           "format" = "{icon} {percent}%";
           "format-icons" = [ "󰃝" "󰃞" "󰃟" "󰃠" ];
         };
         "pulseaudio" = {
           "scroll-step" = 1;
+	  "reverse-scrolling" = true;
           "format" = "{icon} {volume}%";
           "format-muted" = "󰖁 Muted";
           "format-icons" = {
@@ -254,20 +216,7 @@
           "interval" = 1;
           "format" = "󰻠 {usage}%";
         };
-        "mpd" = {
-          "max-length" = 25;
-          "format" = "<span foreground='#bb9af7'></span> {title}";
-          "format-paused" = " {title}";
-          "format-stopped" = "<span foreground='#bb9af7'></span>";
-          "format-disconnected" = "";
-          "on-click" = "mpc --quiet toggle";
-          "on-click-right" = "mpc update; mpc ls | mpc add";
-          "on-click-middle" = "kitty --class='ncmpcpp' ncmpcpp ";
-          "on-scroll-up" = "mpc --quiet prev";
-          "on-scroll-down" = "mpc --quiet next";
-          "smooth-scrolling-threshold" = 5;
-          "tooltip-format" = "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})";
-        };
+        
         "network" = {
           "format-disconnected" = "󰯡 Disconnected";
           "format-ethernet" = "󰀂 {ifname} ({ipaddr})";

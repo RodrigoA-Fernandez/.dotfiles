@@ -11,11 +11,11 @@ in{
   gtk = {
     enable = true;
     theme = {
-      name = "adw-gtk3";
-      package = pkgs.adw-gtk3;
+      name = "Gruvbox-Dark-BL";
+      package = pkgs.gruvbox-gtk-theme;
     };
-    iconTheme.package = pkgs.gruvbox-dark-icons-gtk;
-    iconTheme.name = "Gruvbox-Dark-Icons";
+    iconTheme.package = pkgs.gruvbox-plus-icons;
+    iconTheme.name = "Gruvbox-Plus-Dark";
   };
 
   home.username = "rodrigo";
@@ -23,6 +23,10 @@ in{
 
   home.stateVersion = "23.11"; 
 
+  programs.eww = {
+    enable = true;
+    configDir = ./programs/eww;
+  };
   home.packages = [
     #Uni
     pkgs.obsidian
@@ -33,7 +37,6 @@ in{
     
     #SO
     pkgs.waybar
-    pkgs.eww
     pkgs.opentabletdriver
     pkgs.xdg-desktop-portal
     pkgs.papirus-icon-theme
@@ -41,10 +44,18 @@ in{
     pkgs.libsForQt5.okular
     pkgs.qt6Packages.qtstyleplugin-kvantum
     pkgs.candy-icons
+    pkgs.wlogout
 
     #Miscelanea
     pkgs.neofetch
     pkgs.wl-clipboard
+
+    #Nvim
+    pkgs.stylua
+    pkgs.gnumake
+    pkgs.unzip
+    pkgs.libgcc
+
   ];
 
   home.sessionVariables = {
@@ -61,6 +72,7 @@ in{
     ./programs/starship.nix
     ./programs/rofi.nix
     ./programs/git.nix
+    ./programs/syncthing.nix
   ];
 
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
