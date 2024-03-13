@@ -9,7 +9,7 @@ in{
 
     systemd.enable = true;
     settings = {
-        exec-once = ["syncthing"];
+        exec-once = ["syncthing" "libinput-gestures-setup autostart start"];
         input = {
             kb_layout = "es";
 
@@ -128,7 +128,6 @@ in{
             "${mainMod}, J, togglesplit, "
             "${mainMod}, S, exec, grim -g '$(slurp)' - | swappy -f - "
             "ALT, V, exec, cliphist list | wofi -dmenu | cliphist decode | wl-copy "
-            "${mainMod}, T, exec, ~/.config/HyprV/hyprv_util vswitch "
             "${mainMod}, Space, exec, rofi -show drun"
         
             "${mainMod}, left, movefocus, l"
@@ -151,7 +150,7 @@ in{
             "${mainMod}, 8, workspace, 8"
             "${mainMod}, 9, workspace, 9"
             "${mainMod}, 0, workspace, 10"
-            
+
             "${mainMod} SHIFT, 1, movetoworkspace, 1"
             "${mainMod} SHIFT, 2, movetoworkspace, 2"
             "${mainMod} SHIFT, 3, movetoworkspace, 3"

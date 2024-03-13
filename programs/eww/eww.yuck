@@ -1,1 +1,27 @@
-(include "bar/eww.yuck")
+(deflisten workspace0 "./scripts/hyprland-workspaces `hyprctl monitors -j | jq -r \".[0].name\"`")
+
+(defwidget workspaces0 []
+  (eventbox :onscroll "hyprctl dispatch workspace `echo {} | sed 's/up/+/\' | sed 's/down/-/'`1"
+    (box :class "workspaces"
+      (for i in workspace0
+        (button
+          :onclick "hyprctl dispatch workspace ${i.id}"
+          :class "${i.class}"
+          "${i.name}")))))
+
+(defwindow bar0 []
+  :geometry (geometry :x "0%"
+           :y "0px"
+           :width "100%"
+           :height "30px"
+           :anchor "top center")
+  :stacking "fg"
+  :reserve (struts :distance "40px" :side "top")
+  :windowtype "dock"
+  :wm-ignore false 
+  :monitor 0
+  :exclusive true
+(box 
+    (workspaces0)
+    ))
+
