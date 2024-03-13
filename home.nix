@@ -45,6 +45,10 @@ in{
     pkgs.qt6Packages.qtstyleplugin-kvantum
     pkgs.candy-icons
     pkgs.wlogout
+    pkgs.killall
+    pkgs.jq
+    pkgs.libinput-gestures
+    pkgs.wmctrl
 
     #Miscelanea
     pkgs.neofetch
