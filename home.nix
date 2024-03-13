@@ -40,14 +40,12 @@ in{
     pkgs.opentabletdriver
     pkgs.xdg-desktop-portal
     pkgs.papirus-icon-theme
-    pkgs.xfce.thunar 
     pkgs.libsForQt5.okular
     pkgs.qt6Packages.qtstyleplugin-kvantum
     pkgs.candy-icons
     pkgs.wlogout
     pkgs.killall
     pkgs.jq
-    pkgs.libinput-gestures
     pkgs.wmctrl
 
     #Miscelanea
@@ -77,6 +75,7 @@ in{
     ./programs/rofi.nix
     ./programs/git.nix
     ./programs/syncthing.nix
+    ./programs/thunar.nix
   ];
 
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;

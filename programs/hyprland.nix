@@ -1,4 +1,4 @@
-{config, lib, pkgs, ...}:
+{config, lib, pkgs, inputs, ...}:
 let
  mainMod = "SUPER";
 in{
@@ -6,10 +6,9 @@ in{
     enable = true;
     package = pkgs.hyprland;
     xwayland.enable = true;
-
     systemd.enable = true;
     settings = {
-        exec-once = ["syncthing" "libinput-gestures-setup autostart start"];
+        exec-once = ["syncthing" ];
         input = {
             kb_layout = "es";
 
@@ -161,6 +160,7 @@ in{
             "${mainMod} SHIFT, 8, movetoworkspace, 8"
             "${mainMod} SHIFT, 9, movetoworkspace, 9"
             "${mainMod} SHIFT, 0, movetoworkspace, 10"
+
         ];
 
 	binde = [
@@ -175,6 +175,8 @@ in{
           "${mainMod}, mouse:272, movewindow"
           "${mainMod}, mouse:273, resizewindow"
         ];
+
+        };
     };
   };
 }
