@@ -25,15 +25,15 @@
 	  (box :class "volume_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false"
 		(button :width 30 :onclick "bash ../scripts/audio --toggle-vol" 
 	    (label :class "iconvolume" :text VOLUMEICON))
-		(scale :min 0 :flipped "true" :max 100 :value VOLUME :active "true" :onchange "bash ../scripts/audio --set-vol {}"))
+		(scale :min 0  :max 100 :value VOLUME :active "true" :onchange "bash ../scripts/audio --set-vol {}"))
 	  (box :class "mic_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false"
 		    (button :width 30 :onclick "bash ../scripts/audio --toggle-mic" 
 	      (label :class "iconmic" :text MICICON))
-		    (scale :min 0 :max 100 :value MIC :active "true" :flipped "true" :onchange "bash ../scripts/audio --set-mic {}"))
+		    (scale :min 0 :max 100 :value MIC :active "true"  :onchange "bash ../scripts/audio --set-mic {}"))
 	  (box :class "bright_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false"
 		    (button :width 30 :onclick "" 
 		      (label :width 30 :class "iconbright" :text "󰃠"))
-	    (scale :min 0 :max 255 :value BLIGHT :active "true" :flipped "true" :onchange "bash ../scripts/backlight --set {}")))))
+	    (scale :min 0 :max 255 :value BLIGHT :active "true"  :onchange "bash ../scripts/backlight --set {}")))))
 
 
 

@@ -23,11 +23,6 @@ in{
 
   home.stateVersion = "23.11"; 
 
-  programs.eww = {
-    enable = true;
-    configDir = ./programs/eww;
-  };
-
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -37,12 +32,14 @@ in{
     pkgs.obsidian
     pkgs.postman
     pkgs.xournalpp
+    pkgs.rnote
     pkgs.jetbrains.idea-ultimate
     pkgs.jre
+    pkgs.texliveFull
 
+    pkgs.libsForQt5.dolphin
     #SO
     pkgs.waybar
-    pkgs.opentabletdriver
     pkgs.xdg-desktop-portal
     pkgs.papirus-icon-theme
     pkgs.evince
@@ -59,6 +56,8 @@ in{
     pkgs.python3
     pkgs.playerctl
     pkgs.pulseaudio
+    pkgs.eww
+    pkgs.gnome.adwaita-icon-theme
 
     #Miscelanea
     pkgs.neofetch
@@ -90,6 +89,8 @@ in{
     ./programs/git.nix
     ./programs/syncthing.nix
     ./programs/nvim.nix
+    ./programs/eww.nix
+    ./programs/xournalpp.nix
   ];
 
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
