@@ -27,26 +27,38 @@ in{
     enable = true;
     configDir = ./programs/eww;
   };
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
   home.packages = [
     #Uni
     pkgs.obsidian
     pkgs.postman
-    pkgs.netbeans
-    pkgs.firefox
     pkgs.xournalpp
-    
+    pkgs.jetbrains.idea-ultimate
+    pkgs.jre
+
     #SO
     pkgs.waybar
     pkgs.opentabletdriver
     pkgs.xdg-desktop-portal
     pkgs.papirus-icon-theme
-    pkgs.libsForQt5.okular
+    pkgs.evince
     pkgs.qt6Packages.qtstyleplugin-kvantum
     pkgs.candy-icons
     pkgs.wlogout
     pkgs.killall
     pkgs.jq
     pkgs.wmctrl
+    pkgs.gvfs
+    pkgs.gnome-text-editor
+    pkgs.chromium
+    pkgs.gnome.file-roller
+    pkgs.python3
+    pkgs.playerctl
+    pkgs.pulseaudio
 
     #Miscelanea
     pkgs.neofetch
@@ -57,6 +69,8 @@ in{
     pkgs.gnumake
     pkgs.unzip
     pkgs.libgcc
+    pkgs.lua-language-server
+    pkgs.ripgrep
 
   ];
 
@@ -75,25 +89,24 @@ in{
     ./programs/rofi.nix
     ./programs/git.nix
     ./programs/syncthing.nix
-    ./programs/thunar.nix
+    ./programs/nvim.nix
   ];
 
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
 
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
+  home.file.".config/nixpkgs/config.nix".text = ''
+    { allowUnfree = true; }
+  '';
 
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+ 
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "application/pdf" = ["evince.desktop"];
+      "inode/directory" = ["thunar.desktop"];
+
+    };
   };
-
-  
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

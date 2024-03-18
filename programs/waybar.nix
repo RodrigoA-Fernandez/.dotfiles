@@ -131,7 +131,7 @@
         modules-left = [
           "custom/launcher"
           "hyprland/workspaces"
-          "temperature"
+          # "temperature"
           #"idle_inhibitor"
         ];
         modules-center = [
@@ -140,16 +140,16 @@
         modules-right = [
           "pulseaudio"
           "backlight"
-          "memory"
-          "cpu"
+          # "memory"
+          # "cpu"
           "network"
           "battery"
-          "custom/powermenu"
           "tray"
+          "custom/powermenu"
         ];
         "custom/launcher" = {
           "format" = " ";
-           "on-click" = "rofi -show drun -config /home/rodrigo/.config/rofi/config.rasi";
+           "on-click" = "${pkgs.rofi}/bin/rofi -show drun -config /home/rodrigo/.config/rofi/config.rasi";
           "tooltip" = false;
         };
         
@@ -200,10 +200,10 @@
         };
         "clock" = {
           "interval" = 1;
-          "format" = "{:%I:%M %p  %A %b %d}";
+          "format" = "{:%H:%M  %A %b %d}";
           "tooltip" = true;
-          "tooltip-format"= "{=%A; %d %B %Y}\n<tt>{calendar}</tt>";
-          /*"tooltip-format" = "<tt>{calendar}</tt>";*/
+          "tooltip-format"= "<tt>{calendar}</tt>";
+          # "tooltip-format" = "<tt>{calendar}</tt>";
         };
         "memory" = {
           "interval" = 1;
@@ -233,7 +233,7 @@
         };
         "custom/powermenu" = {
           "format" = "";
-          "on-click" = "wlogout --protocol layer-shell;";
+          "on-click" = "${pkgs.wlogout}/bin/wlogout --protocol layer-shell;";
           "tooltip" = false;
         };
         "tray" = {

@@ -2,13 +2,28 @@
 let
  mainMod = "SUPER";
 in{
+ home.file.".config/hypr/hyprpaper.conf".text = ''
+preload = ~/Imagenes/wallpaper.jpg
+wallpaper = eDP-1,~/Imagenes/wallpaper.jpg
+ '';
+
+home.packages = [
+    pkgs.hyprpaper
+    pkgs.swappy
+    pkgs.grim
+    pkgs.slurp
+];
+
  wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
     xwayland.enable = true;
     systemd.enable = true;
     settings = {
-        exec-once = ["syncthing" ];
+        exec-once = [
+            "syncthing" 
+            "hyprpaper"
+        ];
         input = {
             kb_layout = "es";
 
@@ -67,7 +82,7 @@ in{
              "border, 1, 10, default"
              "fade, 1, 7, default"
              "workspaces, 1, 6, default"
-        	];
+            ];
         };
 
         dwindle = {
@@ -90,7 +105,6 @@ in{
 # Ex    ample windowrule v1
         windowrule = [
          "float,^(pavucontrol)$"
-         "float,^(blueman-manager)$"
          "float,^(nm-connection-editor)$"
          "float,^(chromium)$"
          "float,^(thunar)$"
@@ -116,16 +130,16 @@ in{
         bind =[
             "${mainMod}, Q, exec, kitty  "
             "ALT, F4, killactive, "
-            "${mainMod}, L, exec, swaylock "
             "${mainMod}, M, exec, wlogout --protocol layer-shell "
             "${mainMod} SHIFT, M, exit, "
             "${mainMod}, E, exec, thunar "
             "${mainMod}, V, togglefloating, "
             "${mainMod}, SPACE, exec, wofi "
+            "${mainMod}, C, exec, chromium "
+            "${mainMod}, O, exec, obsidian "
             "${mainMod}, P, pseudo, "
-            "${mainMod}, F, exec, firefox "
-            "${mainMod}, J, togglesplit, "
-            "${mainMod}, S, exec, grim -g '$(slurp)' - | swappy -f - "
+            "${mainMod}, F, fullscreen, "
+            "${mainMod}, S, exec, slurp | grim -g - - | wl-copy  "
             "ALT, V, exec, cliphist list | wofi -dmenu | cliphist decode | wl-copy "
             "${mainMod}, Space, exec, rofi -show drun"
         
@@ -176,7 +190,6 @@ in{
           "${mainMod}, mouse:273, resizewindow"
         ];
 
-        };
     };
   };
 }

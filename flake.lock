@@ -62,26 +62,6 @@
         "type": "github"
       }
     },
-    "hyprgrass": {
-      "inputs": {
-        "hyprland": [
-          "hyprland"
-        ]
-      },
-      "locked": {
-        "lastModified": 1709169750,
-        "narHash": "sha256-3Zpaoy5WWXdElxqCu17KJlcq5kHZBuKTUsnZ/JADvJk=",
-        "owner": "horriblename",
-        "repo": "hyprgrass",
-        "rev": "b3812e3fdf239d03f25f81cbaf1d7ac425cac391",
-        "type": "github"
-      },
-      "original": {
-        "owner": "horriblename",
-        "repo": "hyprgrass",
-        "type": "github"
-      }
-    },
     "hyprland": {
       "inputs": {
         "hyprcursor": "hyprcursor",
@@ -248,7 +228,6 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "hyprgrass": "hyprgrass",
         "hyprland": "hyprland",
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs_2"

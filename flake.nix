@@ -8,10 +8,7 @@
 
     nix-colors.url = "github:misterio77/nix-colors";
     hyprland.url = "github:hyprwm/Hyprland";
-    hyprgrass = {
-         url = "github:horriblename/hyprgrass";
-         inputs.hyprland.follows = "hyprland"; # IMPORTANT
-    };
+    
   };
 
   outputs = { self, nixpkgs, home-manager, ... } @ inputs :let 
