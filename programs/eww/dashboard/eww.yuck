@@ -40,28 +40,28 @@
 ;; battery
 (defwidget battery []
   (box :class "genwin" :vexpand "false" :hexpand "false" :width 65
-    (box :class "battery" :orientation "v" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false"
-		(label :class "baticon" :text BATTERYICON)
+    (box :class "battery" :orientation "v" :spacing 10 :space-evenly "false" :vexpand "false" :hexpand "false"
+	(label :class "baticon" :text BATTERYICON)
         (label :text BATTERY))))
 
 
 ;; network
 (defwidget network []
-  (box :class "genwin" :vexpand "false" :hexpand "true" :orientation "h" :width 200
+  (box :class "genwin" :vexpand "false" :hexpand "true" :orientation "h" :width 100
 	(button :class "btn_net" :onclick "bash ../scripts/network --toggle &" :onmiddleclick ""
       (label :class "network" :text NET))))
 
 
 ;; bluetooth
 (defwidget bluetooth []
-  (box :class "genwin" :vexpand "false" :hexpand "false" :width 60
+  (box :class "genwin" :vexpand "false" :hexpand "false" :width 30
 	(button :class "btn_bluet" :onclick "blueman-manager &"
       (label :text ""))))
 
 
 ;; Power Button
 (defwidget powerbutton []
-  (box :class "genwin" :vexpand "false" :hexpand "false" :width 60
+  (box :class "genwin" :vexpand "false" :hexpand "false" :width 30
 	(button :class "btn_poweroff" :onclick "wlogout &" "")))
 
 
@@ -73,8 +73,8 @@
 
 ;;system
 (defwidget system []
-  (box :space-evenly "false" :orientation "v" :spacing 10 :width 400
-    (box :class "row" :orientation "h" :space-evenly "false" :spacing 10 :height 60
+  (box :space-evenly "false" :orientation "v" :spacing 10 :width 200
+    (box :class "row" :orientation "h" :space-evenly "false" :spacing 10 :height 30
       (network)
       (bluetooth)
       (powerbutton))

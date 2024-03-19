@@ -9,6 +9,7 @@
     ".config/eww/scripts/workspaces.py".source = ./eww/scripts/workspaces.py;
     ".config/eww/scripts/launch_bar".source = ./eww/scripts/launch_bar;
     ".config/eww/scripts/launch_dashboard".source = ./eww/scripts/launch_dashboard;
+    ".config/eww/scripts/backlight".source = ./eww/scripts/backlight;
     ".config/eww/dashboard/eww.scss".text = ''
         /** Global *******************************************/
         *{
@@ -40,24 +41,24 @@
         }
     
         .network {
-          font-size: 12px;
+          font-size: 16px;
           /*color: #f7e1d3;*/
         }
     
     
         /* Bluetooth ******************************************/
         .btn_bluet {
-          font-size: 12px
+          font-size: 16px
         }
     
         /* Battery **********************************************/
         .battery {
-          padding-top: 30px;
-          font-size: 12px;
+          padding-top: 10px;
+          font-size: 18px;
         }
     
         .baticon {
-                font-size: 14px;
+          font-size: 30px;
         }
     
         /* Microphone *****************************************/
@@ -72,7 +73,7 @@
         }
     
         .iconbright {
-                font-size : 12px;
+                font-size : 20px;
                 font-weight : normal;
           /*color: #eed49f;*/
         }
@@ -94,7 +95,7 @@
         }
     
         .iconvolume {
-                font-size : 15px;
+                font-size : 18px;
                 font-weight : normal;
           margin-left: 4px;
         }
@@ -115,7 +116,7 @@
         }
     
         .iconmic {
-                font-size : 15px;
+                font-size : 20px;
                 font-weight : normal;
           margin-left: 4px;
         }
@@ -181,7 +182,7 @@
         .cal {
           padding: 5px 5px 0px 5px;
           border: transparent;
-                font-size: 11px
+                font-size: 15px
         }
     
         calendar {
@@ -215,14 +216,48 @@
     
         /** Power buttons ***************************************/
         .btn_poweroff {
-                font-size : 12px;
-          padding: 8px 0;
-                margin: 0px 4px 0px -5px;
+          font-size : 16px;
+          margin: 0px -2px 0px -5px;
         }
     
     
     
         /** EOF *************************************************/
+      '';
+
+    ".config/eww/bar/eww.scss".text = ''
+        *{
+          all:unset;
+          font-family: 'JetBrains Mono Nerd Font';
+          color: #${config.colorScheme.palette.base07};
+          font-size:17px;
+        }
+
+        .bar {
+          background-color: transparent;
+        }
+
+        .main-container {
+          padding:6px 12px;
+          background-color: #${config.colorScheme.palette.base00};
+          border-radius: 12px;
+          margin: 3px 3px 0 3px;
+        }
+
+        .workspaces {
+          margin-left: -6px;
+          padding-left:0px;
+          color: #${config.colorScheme.palette.base08};
+        }
+
+
+        .time {
+          background: transparent;
+        }
+
+        .systray{
+          padding-right:8px;
+        }
       '';
   };
 }

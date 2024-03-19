@@ -19,6 +19,10 @@
     \usepackage{xcolor}
     \definecolor{xpp_font_color}{HTML}{%%XPP_TEXT_COLOR%%}
 
+    \usepackage{tikz}
+    \usepackage{pgfplots}
+    \pgfplotsset{compat=newest} 
+
     % User input
     \begin{scontents}[store-env=preview]
       \( 

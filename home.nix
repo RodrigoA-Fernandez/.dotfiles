@@ -107,6 +107,10 @@ in{
       "inode/directory" = ["thunar.desktop"];
 
     };
+    associations.added = {
+      "application/pdf"=["com.github.xournalpp.xournalpp.desktop"];
+      "application/x-xopp"=["com.github.xournalpp.xournalpp.desktop"];
+    };
   };
 
   # Let Home Manager install and manage itself.
