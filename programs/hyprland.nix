@@ -23,6 +23,7 @@ home.packages = [
         exec-once = [
             "syncthing" 
             "hyprpaper"
+            "bash /home/rodrigo/.config/eww/scripts/launch_bar"
         ];
         input = {
             kb_layout = "es";

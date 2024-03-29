@@ -7,8 +7,6 @@ CFG="$HOME/.config/eww/dashboard/"
  
 if [[ ! -f "$FILE" ]]; then
 	touch "$FILE"
-	echo $CFG
-	eww --config "$CFG" list-windows
 	eww --config "$CFG" open dashboard
  else
  	eww --config "$CFG" close dashboard

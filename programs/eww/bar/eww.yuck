@@ -24,7 +24,7 @@
 			
 		(box :halign "end"
 			(button :class "systray"
-					:onclick "bash ../scripts/launch_dashboard" 
+					:onclick "bash ../scripts/launch_dashboard &" 
 					:onmiddleclick "bash ../scripts/audio --toggle-vol"
 				(label :text "${network}  ${battery} ${volume}")))
 	)

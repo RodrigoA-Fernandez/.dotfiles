@@ -62,6 +62,13 @@ in{
     #Miscelanea
     pkgs.neofetch
     pkgs.wl-clipboard
+    pkgs.whatsapp-for-linux
+    pkgs.gimp
+    pkgs.libreoffice-qt
+    pkgs.hunspell
+    pkgs.hunspellDicts.uk_UA
+    pkgs.hunspellDicts.es_ES
+    pkgs.thunderbird
 
     #Nvim
     pkgs.stylua
@@ -91,7 +98,8 @@ in{
     ./programs/nvim.nix
     ./programs/eww.nix
     ./programs/xournalpp.nix
-  ];
+    ./programs/print.nix
+    ];
 
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
 

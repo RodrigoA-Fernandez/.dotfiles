@@ -33,7 +33,7 @@
 	  (box :class "bright_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false"
 		    (button :width 30 :onclick "" 
 		      (label :width 30 :class "iconbright" :text "󰃠"))
-	    (scale :min 0 :max 255 :value BLIGHT :active "true"  :onchange "bash ../scripts/backlight --set {}")))))
+	    (scale :min 1 :max 256 :value BLIGHT :active "true"  :onchange "bash ../scripts/backlight --set {}")))))
 
 
 
