@@ -1,7 +1,7 @@
 { config, pkgs, inputs, ... }:
 {
   programs.rofi ={
-    enable = true;
+    enable = false;
     theme = "/home/rodrigo/.config/rofi/launcher.rasi";
   };
 

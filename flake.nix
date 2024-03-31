@@ -22,16 +22,9 @@
       "netbeans"
     ];
   in{
-    nixosConfigurations = {
-      "nixos" = lib.nixosSystem {
-        inherit system;
-	modules = [ ./configuration.nix ];
-      };
-      specialArgs = {inherit allowed-unfree-packages user;};
-    };
     
     homeConfigurations = {
-      "${user}@nixos" = home-manager.lib.homeManagerConfiguration{
+      "${user}@pcdrdg" = home-manager.lib.homeManagerConfiguration{
         inherit pkgs;
 	extraSpecialArgs = {inherit inputs allowed-unfree-packages user;};
         modules = [

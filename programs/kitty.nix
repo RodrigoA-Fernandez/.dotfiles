@@ -1,7 +1,7 @@
 {config, lib, pkgs, ...}:{
  fonts.fontconfig.enable = true;
  programs.kitty = {
-   enable = true;
+   enable = false;
    font = {
      name  = "FiraCode";
      size = 12;

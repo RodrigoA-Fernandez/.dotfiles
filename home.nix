@@ -1,15 +1,8 @@
 { config, pkgs, inputs, ... }:
 let
 in{
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = (_: true);
-    };
-  };
-
   gtk = {
-    enable = true;
+    enable = false;
     theme = {
       name = "Gruvbox-Dark-BL";
       package = pkgs.gruvbox-gtk-theme;
@@ -24,61 +17,59 @@ in{
   home.stateVersion = "23.11"; 
 
   programs.neovim = {
-    enable = true;
+    enable = false;
     defaultEditor = true;
   };
-  home.packages = [
-    #Uni
-    pkgs.obsidian
-    pkgs.postman
-    pkgs.xournalpp
-    pkgs.rnote
-    pkgs.jetbrains.idea-ultimate
-    pkgs.jre
-    pkgs.texliveFull
-
-    pkgs.libsForQt5.dolphin
-    #SO
-    pkgs.waybar
-    pkgs.xdg-desktop-portal
-    pkgs.papirus-icon-theme
-    pkgs.evince
-    pkgs.qt6Packages.qtstyleplugin-kvantum
-    pkgs.candy-icons
-    pkgs.wlogout
-    pkgs.killall
-    pkgs.jq
-    pkgs.wmctrl
-    pkgs.gvfs
-    pkgs.gnome-text-editor
-    pkgs.chromium
-    pkgs.gnome.file-roller
-    pkgs.python3
-    pkgs.playerctl
-    pkgs.pulseaudio
-    pkgs.eww
-    pkgs.gnome.adwaita-icon-theme
-
-    #Miscelanea
-    pkgs.neofetch
-    pkgs.wl-clipboard
-    pkgs.whatsapp-for-linux
-    pkgs.gimp
-    pkgs.libreoffice-qt
-    pkgs.hunspell
-    pkgs.hunspellDicts.uk_UA
-    pkgs.hunspellDicts.es_ES
-    pkgs.thunderbird
-
-    #Nvim
-    pkgs.stylua
-    pkgs.gnumake
-    pkgs.unzip
-    pkgs.libgcc
-    pkgs.lua-language-server
-    pkgs.ripgrep
-
-  ];
+#  home.packages = [
+#    #Uni
+#    pkgs.obsidian
+#    pkgs.postman
+#    pkgs.xournalpp
+#    pkgs.rnote
+#    pkgs.jetbrains.idea-ultimate
+#    pkgs.jre
+#    pkgs.texliveFull
+#
+#    pkgs.libsForQt5.dolphin
+#    #SO
+#    pkgs.waybar
+#    pkgs.xdg-desktop-portal
+#    pkgs.papirus-icon-theme
+#    pkgs.evince
+#    pkgs.qt6Packages.qtstyleplugin-kvantum
+#    pkgs.candy-icons
+#    pkgs.wlogout
+#    pkgs.killall
+#    pkgs.jq
+#    pkgs.wmctrl
+#    pkgs.gvfs
+#    pkgs.gnome-text-editor
+#    pkgs.chromium
+#    pkgs.gnome.file-roller
+#    pkgs.python3
+#    pkgs.playerctl
+#    pkgs.pulseaudio
+#    pkgs.eww
+#    pkgs.gnome.adwaita-icon-theme
+#
+#    #Miscelanea
+#    pkgs.neofetch
+#    pkgs.wl-clipboard
+#    pkgs.whatsapp-for-linux
+#    pkgs.gimp
+#    pkgs.libreoffice-qt
+#    pkgs.hunspell
+#    pkgs.hunspellDicts.uk_UA
+#    pkgs.hunspellDicts.es_ES
+#    pkgs.thunderbird
+#
+#    #Nvim
+#    pkgs.stylua
+#    pkgs.gnumake
+#    pkgs.unzip
+#    pkgs.ripgrep
+#
+#  ];
 
   home.sessionVariables = {
     GTK_USE_PORTAL = "1";
@@ -106,20 +97,6 @@ in{
   home.file.".config/nixpkgs/config.nix".text = ''
     { allowUnfree = true; }
   '';
-
- 
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "application/pdf" = ["evince.desktop"];
-      "inode/directory" = ["thunar.desktop"];
-
-    };
-    associations.added = {
-      "application/pdf"=["com.github.xournalpp.xournalpp.desktop"];
-      "application/x-xopp"=["com.github.xournalpp.xournalpp.desktop"];
-    };
-  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

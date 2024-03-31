@@ -1,7 +1,7 @@
 {config, ...}:
 {
   programs.starship = {
-    enable = true;
+    enable = false;
     enableZshIntegration = true;
     settings = {
       "$schema" = "https://starship.rs/config-schema.json";
