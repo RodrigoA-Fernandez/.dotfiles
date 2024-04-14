@@ -84,12 +84,9 @@ in{
     ./programs/kitty.nix
     ./programs/starship.nix
     ./programs/rofi.nix
-    ./programs/git.nix
-    ./programs/syncthing.nix
-    ./programs/nvim.nix
     ./programs/eww.nix
-    ./programs/xournalpp.nix
-    ./programs/print.nix
+    ./programs/tmux.nix
+    ./programs/libinput-gestures.nix
     ];
 
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;

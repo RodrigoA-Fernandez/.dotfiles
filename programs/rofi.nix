@@ -23,7 +23,7 @@
   ## Run
   rofi \
       -show drun \
-      -theme ''${dir}/config.rasi
+      -theme ''${dir}/launcher.rasi
     '';
    executable = true;
  };

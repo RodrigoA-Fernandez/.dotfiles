@@ -24,7 +24,7 @@
   in{
     
     homeConfigurations = {
-      "${user}@pcdrdg" = home-manager.lib.homeManagerConfiguration{
+      "${user}" = home-manager.lib.homeManagerConfiguration{
         inherit pkgs;
 	extraSpecialArgs = {inherit inputs allowed-unfree-packages user;};
         modules = [
