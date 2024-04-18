@@ -19,6 +19,7 @@ home.packages = [
         exec-once = hyprpaper
         exec-once = bash /home/rodrigo/.config/eww/scripts/launch_bar
         exec-once = systemctl --user enable opentabletdriver.service --now       
+        exec-once = libinput-gestures-setup start
         input {
             kb_layout = es
             follow_mouse = 1
@@ -73,7 +74,7 @@ home.packages = [
             animation = border, 1, 10, default
             animation = fade, 1, 7, default
             animation = workspaces, 1, 6, default
-            animation = specialWorkspaces, 1, 6, default, slidevert
+            animation = specialWorkspace, 1, 6, myBezier, slidevert
         }
 
         dwindle  {

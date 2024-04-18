@@ -11,6 +11,10 @@
     bind-key k select-pane -U
     bind-key l select-pane -R
     
+    set-option -sg escape-time 10
+    set-option -g focus-events on
+    set-option -sa terminal-features ',xterm-kitty:RGB'
+
     set -g @plugin 'tmux-plugins/tpm'
     set -g @plugin 'christoomey/vim-tmux-navigator'
     set -g @plugin 'jimeh/tmuxifier'
