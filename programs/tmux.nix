@@ -23,6 +23,7 @@ in{
     set -g @plugin 'tmux-plugins/tpm'
     set -g @plugin 'christoomey/vim-tmux-navigator'
     set -g @plugin 'jimeh/tmuxifier'
+    #set -g @plugin 'tinted-theming/tinted-tmux'
 
     set -g @plugin 'egel/tmux-gruvbox'
     set -g @tmux-gruvbox 'dark' # or 'light'   

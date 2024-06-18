@@ -90,6 +90,7 @@ in{
     ];
 
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
+  #colorScheme = inputs.nix-colors.colorSchemes.greenscreen;
 
   home.file.".config/nixpkgs/config.nix".text = ''
     { allowUnfree = true; }

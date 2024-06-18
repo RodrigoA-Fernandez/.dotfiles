@@ -25,6 +25,7 @@
     export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
     export PATH="$HOME/go/bin:$PATH"
     export PATH="/mnt/c/Users/rafv/AppData/Local/Microsoft/WinGet/Links:$PATH"
+    export PATH="/mnt/c/Windows/System32:$PATH"
     export EDITOR='nvim'
     export VISUAL='nvim'
   
