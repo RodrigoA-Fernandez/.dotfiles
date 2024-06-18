@@ -2,7 +2,7 @@
 {
   programs.rofi ={
     enable = false;
-    theme = "/home/rodrigo/.config/rofi/launcher.rasi";
+    # theme = "/home/rodrigo/.config/rofi/launcher.rasi";
   };
 
   home.file.".config/rofi/launcher.sh" = {

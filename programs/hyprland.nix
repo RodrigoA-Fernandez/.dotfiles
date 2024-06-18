@@ -2,10 +2,10 @@
 let
  mainMod = "SUPER";
 in{
- home.file.".config/hypr/hyprpaper.conf".text = ''
-preload = ~/Imagenes/wallpaper.jpg
-wallpaper = eDP-1,~/Imagenes/wallpaper.jpg
- '';
+#  home.file.".config/hypr/hyprpaper.conf".text = ''
+# preload = ~/.dotfiles/images/wallpaper.jpg
+# wallpaper = eDP-1,~/.dotfiles/images/wallpaper.jpg
+#  '';
 
 home.packages = [
     pkgs.hyprpaper

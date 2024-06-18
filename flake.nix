@@ -8,10 +8,11 @@
 
     nix-colors.url = "github:misterio77/nix-colors";
     hyprland.url = "github:hyprwm/Hyprland";
+    stylix.url = "github:danth/stylix";
 
   };
 
-  outputs = { self, nixpkgs, home-manager, ... } @ inputs :let 
+  outputs = { self, nixpkgs, home-manager, stylix, ... } @ inputs :let 
     system = "x86_64-linux";
   lib = nixpkgs.lib;
   user = "rodrigo";
@@ -22,13 +23,13 @@
       "netbeans"
   ];
   in{
-
     homeConfigurations = {
       "${user}" = home-manager.lib.homeManagerConfiguration{
         inherit pkgs;
         extraSpecialArgs = {inherit inputs allowed-unfree-packages user;};
         modules = [
           ./home.nix
+          stylix.homeManagerModules.stylix
         ];
       };
     };

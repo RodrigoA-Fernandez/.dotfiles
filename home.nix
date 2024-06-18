@@ -1,15 +1,14 @@
-{ config, pkgs, inputs, ... }:
-let
-in{
-  gtk = {
-    enable = false;
-    theme = {
-      name = "Gruvbox-Dark-BL";
-      package = pkgs.gruvbox-gtk-theme;
-    };
-    iconTheme.package = pkgs.gruvbox-plus-icons;
-    iconTheme.name = "Gruvbox-Plus-Dark";
-  };
+{ config, pkgs, inputs, stylix, ... }:
+{
+  # gtk = {
+  #   enable = false;
+  #   theme = {
+  #     name = "Gruvbox-Dark-BL";
+  #     package = pkgs.gruvbox-gtk-theme;
+  #   };
+  #   iconTheme.package = pkgs.gruvbox-plus-icons;
+  #   iconTheme.name = "Gruvbox-Plus-Dark";
+  # };
 
   home.username = "rodrigo";
   home.homeDirectory = "/home/rodrigo";
@@ -90,6 +89,9 @@ in{
     ];
 
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
+  stylix.enable = true;
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+  stylix.image = ./images/wallpaper.jpg;
   #colorScheme = inputs.nix-colors.colorSchemes.greenscreen;
 
   home.file.".config/nixpkgs/config.nix".text = ''

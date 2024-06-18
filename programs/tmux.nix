@@ -1,7 +1,7 @@
 {pkgs, config, ...}:let
 terminal.colors = {
-    "DESKTOP-G7U6IGR" = "xterm-256color";
-    "pcdrdg" = "xterm-kitty";
+    "DESKTOP-G7U6IGR\n" = "xterm-256color";
+    "pcdrdg\n" = "xterm-kitty";
   };
 in{
   
@@ -18,7 +18,7 @@ in{
     
     set-option -sg escape-time 10
     set-option -g focus-events on
-    set-option -sa terminal-features ',${terminal.colors."${builtins.getEnv "HOSTNAME"}"}:RGB'
+    set-option -sa terminal-features ',${terminal.colors."${(builtins.readFile /etc/hostname)}"}:RGB'
 
     set -g @plugin 'tmux-plugins/tpm'
     set -g @plugin 'christoomey/vim-tmux-navigator'
