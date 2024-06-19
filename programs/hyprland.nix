@@ -34,8 +34,8 @@ home.packages = [
             gaps_in = 5
             gaps_out = 10
             border_size = 2
-            col.active_border = rgba(${config.colorScheme.palette.base08}ff)
-            col.inactive_border = rgba(${config.colorScheme.palette.base07}ff)
+            col.active_border = rgba(${config.lib.stylix.colors.base08}ff)
+            col.inactive_border = rgba(${config.lib.stylix.colors.base07}ff)
             layout = dwindle
         }
 
@@ -60,7 +60,7 @@ home.packages = [
             drop_shadow = true
             shadow_range = 4
             shadow_render_power = 3
-            col.shadow = rgba(${config.colorScheme.palette.base00}aa)
+            col.shadow = rgba(${config.lib.stylix.colors.base00}aa)
         }
 
         animations  {

@@ -1,14 +1,9 @@
 { config, pkgs, inputs, stylix, ... }:
 {
-  # gtk = {
-  #   enable = false;
-  #   theme = {
-  #     name = "Gruvbox-Dark-BL";
-  #     package = pkgs.gruvbox-gtk-theme;
-  #   };
-  #   iconTheme.package = pkgs.gruvbox-plus-icons;
-  #   iconTheme.name = "Gruvbox-Plus-Dark";
-  # };
+   gtk = {
+     iconTheme.package = pkgs.gruvbox-plus-icons;
+     iconTheme.name = "Gruvbox-Plus-Dark";
+   };
 
   home.username = "rodrigo";
   home.homeDirectory = "/home/rodrigo";
@@ -76,27 +71,25 @@
   };
 
   imports = [
-    inputs.nix-colors.homeManagerModules.default
     ./programs/waybar.nix
     ./programs/zsh.nix
     ./programs/hyprland.nix
-    ./programs/kitty.nix
     ./programs/starship.nix
     ./programs/rofi.nix
     ./programs/eww.nix
     ./programs/tmux.nix
     ./programs/libinput-gestures.nix
+    ./stylix.nix
     ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
-  stylix.enable = true;
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
-  stylix.image = ./images/wallpaper.jpg;
-  #colorScheme = inputs.nix-colors.colorSchemes.greenscreen;
-
+  
   home.file.".config/nixpkgs/config.nix".text = ''
     { allowUnfree = true; }
   '';
+
+  programs.firefox = {
+    enable = true;
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

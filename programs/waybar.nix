@@ -22,8 +22,8 @@
                }
                @keyframes blink_red {
                  to {
-                   background-color: #${config.colorScheme.palette.base08};
-                   color: #${config.colorScheme.palette.base00};
+                   background-color: #${config.lib.stylix.colors.base08};
+                   color: #${config.lib.stylix.colors.base00};
                  }
                }
                .warning, .critical, .urgent {
@@ -40,7 +40,7 @@
                  margin-left: 0px;
                  margin-right: 0px;
                  margin-top: 0px;
-                 background-color: #${config.colorScheme.palette.base00};
+                 background-color: #${config.lib.stylix.colors.base00};
                }
          #workspaces {
                  padding-left: 0px;
@@ -51,24 +51,24 @@
                  padding-bottom: 5px;
                  padding-left: 6px;
                  padding-right: 6px;
-                 color: #${config.colorScheme.palette.base05};
+                 color: #${config.lib.stylix.colors.base05};
                }
          #workspaces button.active {
-                 background-color: #${config.colorScheme.palette.base0D};
-                 color: #${config.colorScheme.palette.base01};
+                 background-color: #${config.lib.stylix.colors.base0D};
+                 color: #${config.lib.stylix.colors.base01};
                }
          #workspaces button.urgent {
-                 color: #${config.colorScheme.palette.base09};
+                 color: #${config.lib.stylix.colors.base09};
                }
          #workspaces button:hover {
-                 background-color: #${config.colorScheme.palette.base08};
-                 color: #${config.colorScheme.palette.base07};
+                 background-color: #${config.lib.stylix.colors.base08};
+                 color: #${config.lib.stylix.colors.base07};
  	}
         tooltip {
-         background: #${config.colorScheme.palette.base00};
+         background: #${config.lib.stylix.colors.base00};
         }
        tooltip label {
-	 color: #${config.colorScheme.palette.base07};
+	 color: #${config.lib.stylix.colors.base07};
        }
 	
          #custom-launcher {
@@ -83,28 +83,28 @@
                }
                
          #memory {
-                 color: #${config.colorScheme.palette.base0A};
+                 color: #${config.lib.stylix.colors.base0A};
                }
          #cpu {
-                 color: #${config.colorScheme.palette.base0B};
+                 color: #${config.lib.stylix.colors.base0B};
                }
          #clock {
-                 color: #${config.colorScheme.palette.base07};
+                 color: #${config.lib.stylix.colors.base07};
                }
         /* #idle_inhibitor {
                  color: rgb(221, 182, 242);
                }*/
          #temperature {
-                 color: #${config.colorScheme.palette.base09};
+                 color: #${config.lib.stylix.colors.base09};
                }
          #backlight {
-                 color: #${config.colorScheme.palette.base0E};
+                 color: #${config.lib.stylix.colors.base0E};
                }
          #pulseaudio {
-                 color: #${config.colorScheme.palette.base0F};
+                 color: #${config.lib.stylix.colors.base0F};
                }
          #network {
-                 color: #${config.colorScheme.palette.base0D};
+                 color: #${config.lib.stylix.colors.base0D};
                }
 
          #network.disconnected {
