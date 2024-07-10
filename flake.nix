@@ -9,6 +9,7 @@
     hyprland.url = "github:hyprwm/Hyprland";
     stylix.url = "github:danth/stylix";
     ags.url = "github:Aylur/ags";
+    matugen.url = "github:InioX/matugen?ref=v2.2.0";
   };
 
   outputs = { self, nixpkgs, home-manager, stylix, ... } @ inputs :let 
