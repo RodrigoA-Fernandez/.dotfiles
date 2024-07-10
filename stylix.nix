@@ -5,8 +5,8 @@
   stylix.targets.firefox.enable = true;
 
   stylix.autoEnable = true;
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
-  # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+  # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
   # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/bright.yaml";
   stylix.image = ./images/wallpaper.jpg;
 

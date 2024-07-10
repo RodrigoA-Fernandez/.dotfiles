@@ -14,18 +14,27 @@
     enable = false;
     defaultEditor = true;
   };
-#  home.packages = [
+
+  # services.kdeconnect = {
+  #   enable = true;
+  #   package = pkgs.kdePackages.kdeconnect-kde;
+  #   indicator = true;
+  # };
+
+ home.packages = [
 #    #Uni
-#    pkgs.obsidian
-#    pkgs.postman
-#    pkgs.xournalpp
+   pkgs.obsidian
+   pkgs.postman
+   pkgs.xournalpp
 #    pkgs.rnote
 #    pkgs.jetbrains.idea-ultimate
 #    pkgs.jre
 #    pkgs.texliveFull
 #
-#    pkgs.libsForQt5.dolphin
 #    #SO
+   pkgs.localsend
+   pkgs.flutter319
+   pkgs.bun
 #    pkgs.waybar
 #    pkgs.xdg-desktop-portal
 #    pkgs.papirus-icon-theme
@@ -49,21 +58,14 @@
 #    #Miscelanea
 #    pkgs.neofetch
 #    pkgs.wl-clipboard
-#    pkgs.whatsapp-for-linux
+   pkgs.whatsapp-for-linux
 #    pkgs.gimp
 #    pkgs.libreoffice-qt
 #    pkgs.hunspell
 #    pkgs.hunspellDicts.uk_UA
 #    pkgs.hunspellDicts.es_ES
-#    pkgs.thunderbird
-#
-#    #Nvim
-#    pkgs.stylua
-#    pkgs.gnumake
-#    pkgs.unzip
-#    pkgs.ripgrep
-#
-#  ];
+   pkgs.thunderbird
+ ];
 
   home.sessionVariables = {
     GTK_USE_PORTAL = "1";
@@ -71,6 +73,7 @@
   };
 
   imports = [
+    inputs.ags.homeManagerModules.default
     ./programs/waybar.nix
     ./programs/zsh.nix
     ./programs/hyprland.nix
@@ -80,6 +83,7 @@
     ./programs/tmux.nix
     ./programs/libinput-gestures.nix
     ./stylix.nix
+    ./programs/ags.nix
     ];
 
   

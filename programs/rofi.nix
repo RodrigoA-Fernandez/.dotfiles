@@ -72,7 +72,7 @@
 	    padding:                     0px;
 	    border-radius:               10px;
 	    cursor:                      "default";
-	    background-color:            #${config.lib.stylix.colors.base01}aa;
+	    background-color:            #${config.lib.stylix.colors.base01}ff;
 	}
 
 	/*****----- Main Box -----*****/
