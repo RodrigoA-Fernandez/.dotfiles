@@ -17,7 +17,6 @@ home.packages = [
   home.file.".config/hypr/hyprland.conf".text = ''
         exec-once = syncthing 
         exec-once = hyprpaper
-        exec-once = bash /home/rodrigo/.config/eww/scripts/launch_bar
         exec-once = systemctl --user enable opentabletdriver.service --now       
         exec-once = libinput-gestures-setup start
         input {
@@ -83,10 +82,10 @@ home.packages = [
             preserve_split = yes # you probably want this
         }
 
-        master  {
-            # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-            new_is_master = true
-        }
+        # master  {
+        #     # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
+        #     new_is_master = true
+        # }
 
         gestures  {
             # See https://wiki.hyprland.org/Configuring/Variables/ for more

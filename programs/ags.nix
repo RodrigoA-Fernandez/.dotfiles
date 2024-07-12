@@ -3,12 +3,13 @@
   pkgs,
   ...
 }: {
-  # imports = [
-  #   inputs.ags.homeManagerModules.default
-  # ];
+   imports = [
+     inputs.ags.homeManagerModules.default
+   ];
 
   home.packages = with pkgs; [
-    bun
+    esbuild
+    nodejs_22
     dart-sass
     fd
     brightnessctl
@@ -23,6 +24,7 @@
     pavucontrol
     networkmanager
     gtk3
+    power-profiles-daemon
   ];
 
   programs.ags = {

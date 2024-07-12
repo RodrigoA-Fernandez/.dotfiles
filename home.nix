@@ -34,7 +34,6 @@
 #    #SO
    pkgs.localsend
    pkgs.flutter319
-   pkgs.bun
 #    pkgs.waybar
 #    pkgs.xdg-desktop-portal
 #    pkgs.papirus-icon-theme
@@ -73,7 +72,7 @@
   };
 
   imports = [
-    inputs.ags.homeManagerModules.default
+    # inputs.ags.homeManagerModules.default
     ./programs/waybar.nix
     ./programs/zsh.nix
     ./programs/hyprland.nix
@@ -83,7 +82,7 @@
     ./programs/tmux.nix
     ./programs/libinput-gestures.nix
     ./stylix.nix
-    ./programs/ags.nix
+     ./programs/ags.nix
     ];
 
   
