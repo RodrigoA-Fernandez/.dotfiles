@@ -19,6 +19,7 @@ home.packages = [
         exec-once = hyprpaper
         exec-once = systemctl --user enable opentabletdriver.service --now       
         exec-once = libinput-gestures-setup start
+        exec-once = ags
         input {
             kb_layout = es
             follow_mouse = 1
@@ -113,7 +114,8 @@ home.packages = [
 
         bind = ${mainMod}, Q, exec, kitty  
         bind = ALT, F4, killactive, 
-        bind = ${mainMod}, M, exec, wlogout --protocol layer-shell 
+        bind = ${mainMod}, M, exec, ags -t powermenu
+        bind = ${mainMod}, Tab, exec, ags -t overview
         bind = ${mainMod} SHIFT, M, exit, 
         bind = ${mainMod}, E, exec, thunar 
         bind = ${mainMod}, V, togglefloating, 
@@ -121,9 +123,10 @@ home.packages = [
         bind = ${mainMod}, O, exec, obsidian 
         bind = ${mainMod}, P, pseudo, 
         bind = ${mainMod}, F, fullscreen, 
-        bind = ${mainMod}, S, exec, slurp | grim -g - - | wl-copy  
+        # bind = ${mainMod}, S, exec, slurp | grim -g - - | wl-copy  
         bind = ALT, V, exec, cliphist list | wofi -dmenu | cliphist decode | wl-copy 
-        bind = ${mainMod}, Space, exec, ~/.config/rofi/launcher.sh
+        # bind = ${mainMod}, Space, exec, ~/.config/rofi/launcher.sh
+        bind = ${mainMod}, Space, exec, ags -t launcher
 
         bind = ${mainMod}, left, movefocus, l
         bind = ${mainMod}, right, movefocus, r
@@ -157,7 +160,11 @@ home.packages = [
         bind = ${mainMod} SHIFT, 9, movetoworkspace, 9
         bind = ${mainMod} SHIFT, 0, movetoworkspace, 10
 
-	binde = ${mainMod} Ctrl, left, resizeactive, -10 0
+        bind=,XF86Launch4,   exec, ags -r 'recorder.start()'
+        bind= ${mainMod}, S,         exec, ags -r 'recorder.screenshot()'
+        bind= ${mainMod} SHIFT, S,    exec, ags -r 'recorder.screenshot(true)'
+
+        binde = ${mainMod} Ctrl, left, resizeactive, -10 0
         binde = ${mainMod} Ctrl, right, resizeactive, 10 0
         binde = ${mainMod} Ctrl, up, resizeactive, 0 -10
         binde = ${mainMod} Ctrl, down, resizeactive, 0 10

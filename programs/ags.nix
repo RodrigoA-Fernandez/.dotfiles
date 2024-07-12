@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  config,
   ...
 }: {
    imports = [
@@ -33,5 +34,13 @@
     extraPackages = with pkgs; [
       accountsservice
     ];
+  };
+
+ home.file.".local/share/ags/colors.json".text = builtins.toJSON {
+     "primary-bg"  = "#${config.lib.stylix.colors.base09}";
+     "primary-fg"  = "#${config.lib.stylix.colors.base00}";
+     "error-bg"    = "#${config.lib.stylix.colors.base01}";
+     "error-fg"    = "#${config.lib.stylix.colors.base08}";
+     "charging-fg" = "#${config.lib.stylix.colors.base0A}";
   };
 }
