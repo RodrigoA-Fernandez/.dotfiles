@@ -72,7 +72,7 @@
 	    padding:                     0px;
 	    border-radius:               10px;
 	    cursor:                      "default";
-	    background-color:            #${config.colorScheme.palette.base01}aa;
+	    background-color:            #${config.lib.stylix.colors.base01}ff;
 	}
 
 	/*****----- Main Box -----*****/
@@ -99,9 +99,9 @@
 	    padding:                     12px 16px;
 	    border:                      1px;
 	    border-radius:               10px;
-	    border-color:                #${config.colorScheme.palette.base00};
-	    background-color:            #${config.colorScheme.palette.base02}22;
-	    text-color:                  #${config.colorScheme.palette.base07};
+	    border-color:                #${config.lib.stylix.colors.base00};
+	    background-color:            #${config.lib.stylix.colors.base02}22;
+	    text-color:                  #${config.lib.stylix.colors.base07};
 	    str:                         "";
 	}
 	entry {
@@ -109,9 +109,9 @@
 	    padding:                     12px 16px;
 	    border:                      1px;
 	    border-radius:               10px;
-	    border-color:                #${config.colorScheme.palette.base00};
-	    background-color:            #${config.colorScheme.palette.base02}22;
-	    text-color:                  #${config.colorScheme.palette.base07};
+	    border-color:                #${config.lib.stylix.colors.base00};
+	    background-color:            #${config.lib.stylix.colors.base02}22;
+	    text-color:                  #${config.lib.stylix.colors.base07};
 	    cursor:                      text;
 	    placeholder:                 "Search...";
 	    placeholder-color:           inherit;
@@ -146,21 +146,21 @@
 	    border:                      0px solid;
 	    border-radius:               10px;
 	    background-color:            transparent;
-	    text-color:                  #${config.colorScheme.palette.base07};
+	    text-color:                  #${config.lib.stylix.colors.base07};
 	    cursor:                      pointer;
 	}
 	element normal.active {
-	    background-image:            linear-gradient(to right, #${config.colorScheme.palette.base08}, #${config.colorScheme.palette.base09});
-	    text-color:                  #${config.colorScheme.palette.base07};
+	    background-image:            linear-gradient(to right, #${config.lib.stylix.colors.base08}, #${config.lib.stylix.colors.base09});
+	    text-color:                  #${config.lib.stylix.colors.base07};
 	}
 	element selected.normal {
 	    border-radius:               10px;
-	    background-image:            linear-gradient(to right, #${config.colorScheme.palette.base08}, #${config.colorScheme.palette.base09});
-	    text-color:                  #${config.colorScheme.palette.base07};
+	    background-image:            linear-gradient(to right, #${config.lib.stylix.colors.base08}, #${config.lib.stylix.colors.base09});
+	    text-color:                  #${config.lib.stylix.colors.base07};
 	}
 	element selected.active {
-	    background-image:            linear-gradient(to right, #${config.colorScheme.palette.base0C}, #${config.colorScheme.palette.base0D});
-	    text-color:                  #${config.colorScheme.palette.base07};
+	    background-image:            linear-gradient(to right, #${config.lib.stylix.colors.base0C}, #${config.lib.stylix.colors.base0D});
+	    text-color:                  #${config.lib.stylix.colors.base07};
 	}
 	element-icon {
 	    background-color:            transparent;
@@ -186,13 +186,13 @@
 	    font:                        "Iosevka Nerd Font Bold 10";
 	    padding:                     10px;
 	    border-radius:               100%;
-	    background-image:            linear-gradient(to right, #${config.colorScheme.palette.base0C}, #${config.colorScheme.palette.base0D});
-	    text-color:                  #${config.colorScheme.palette.base07};
+	    background-image:            linear-gradient(to right, #${config.lib.stylix.colors.base0C}, #${config.lib.stylix.colors.base0D});
+	    text-color:                  #${config.lib.stylix.colors.base07};
 	    cursor:                      pointer;
 	}
 	button selected {
-	    background-image:            linear-gradient(to right, #${config.colorScheme.palette.base08}, #${config.colorScheme.palette.base09});
-	    text-color:                  #${config.colorScheme.palette.base07};
+	    background-image:            linear-gradient(to right, #${config.lib.stylix.colors.base08}, #${config.lib.stylix.colors.base09});
+	    text-color:                  #${config.lib.stylix.colors.base07};
 	}
 
 	/*****----- Message -----*****/

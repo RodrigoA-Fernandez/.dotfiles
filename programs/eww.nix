@@ -15,14 +15,14 @@
         *{
           all: unset;
           font-family: 'JetBrains Mono Nerd Font';
-          color: #${config.colorScheme.palette.base07};
+          color: #${config.lib.stylix.colors.base07};
         }
     
     
         /** Background ***************************************/
         .background {
-          background-color: #${config.colorScheme.palette.base00};
-          border: 2px solid #${config.colorScheme.palette.base08};
+          background-color: #${config.lib.stylix.colors.base00};
+          border: 2px solid #${config.lib.stylix.colors.base08};
           border-radius: 12px;
           padding: 10px;
         }
@@ -30,7 +30,7 @@
     
         /** Generic window ***********************************/
         .genwin {
-          background-color: #${config.colorScheme.palette.base01};
+          background-color: #${config.lib.stylix.colors.base01};
                 border-radius: 16px;
           padding:5px;
         }
@@ -80,7 +80,7 @@
     
         .bright_bar scale trough {
                 all: unset;
-                background-color: #${config.colorScheme.palette.base09};
+                background-color: #${config.lib.stylix.colors.base09};
                 border-radius: 16px;
                 min-height: 20px;
                 min-width: 240px;
@@ -91,7 +91,7 @@
                 all: unset;
                 border-radius: 16px;
                 /*background-color: #eed49f;*/
-                background-color: #${config.colorScheme.palette.base0A};
+                background-color: #${config.lib.stylix.colors.base0A};
         }
     
         .iconvolume {
@@ -102,7 +102,7 @@
     
         .volume_bar scale trough {
                 all: unset;
-                background-color: #${config.colorScheme.palette.base09};
+                background-color: #${config.lib.stylix.colors.base09};
                 border-radius: 16px;
                 min-height: 20px;
                 min-width: 240px;
@@ -112,7 +112,7 @@
         .volume_bar scale trough highlight {
                 all: unset;
                 border-radius: 16px;
-                background-color: #${config.colorScheme.palette.base0A};
+                background-color: #${config.lib.stylix.colors.base0A};
         }
     
         .iconmic {
@@ -123,7 +123,7 @@
     
         .mic_bar scale trough {
                 all: unset;
-                background-color: #${config.colorScheme.palette.base09};
+                background-color: #${config.lib.stylix.colors.base09};
                 border-radius: 16px;
                 min-height: 20px;
                 min-width: 240px;
@@ -133,7 +133,7 @@
         .mic_bar scale trough highlight {
                 all: unset;
                 border-radius: 16px;
-                background-color: #${config.colorScheme.palette.base0A};
+                background-color: #${config.lib.stylix.colors.base0A};
         }
     
     
@@ -186,29 +186,29 @@
         }
     
         calendar {
-          color: #${config.colorScheme.palette.base04};
+          color: #${config.lib.stylix.colors.base04};
         }
     
         calendar:selected {
-          color: #${config.colorScheme.palette.base0A};
+          color: #${config.lib.stylix.colors.base0A};
         }
     
         calendar.header {
-          color: #${config.colorScheme.palette.base08};
+          color: #${config.lib.stylix.colors.base08};
           font-weight: bold;
         }
     
         calendar.button {
-          color: #${config.colorScheme.palette.base09};
+          color: #${config.lib.stylix.colors.base09};
         }
     
         calendar.highlight {
-          color: #${config.colorScheme.palette.base08};
+          color: #${config.lib.stylix.colors.base08};
           font-weight: bold;
         }
     
         calendar:indeterminate {
-          color: #${config.colorScheme.palette.base03};
+          color: #${config.lib.stylix.colors.base03};
         }
     
     
@@ -229,7 +229,7 @@
         *{
           all:unset;
           font-family: 'JetBrains Mono Nerd Font';
-          color: #${config.colorScheme.palette.base07};
+          color: #${config.lib.stylix.colors.base07};
           font-size:17px;
         }
 
@@ -239,7 +239,7 @@
 
         .main-container {
           padding:6px 12px;
-          background-color: #${config.colorScheme.palette.base00};
+          background-color: #${config.lib.stylix.colors.base00};
           border-radius: 12px;
           margin: 3px 3px 0 3px;
         }
@@ -247,7 +247,7 @@
         .workspaces {
           margin-left: -6px;
           padding-left:0px;
-          color: #${config.colorScheme.palette.base08};
+          color: #${config.lib.stylix.colors.base08};
         }
 
 

@@ -6,10 +6,32 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    nix-colors.url = "github:misterio77/nix-colors";
     hyprland.url = "github:hyprwm/Hyprland";
     stylix.url = "github:danth/stylix";
+    ags.url = "github:Aylur/ags";
+    matugen.url = "github:InioX/matugen?ref=v2.2.0";
 
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hyprland-hyprspace = {
+      url = "github:KZDKM/Hyprspace";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    astal.url = "github:Aylur/astal";
+
+    lf-icons = {
+      url = "github:gokcehan/lf";
+      flake = false;
+    };
+
+    firefox-gnome-theme = {
+      url = "github:rafaelmardojai/firefox-gnome-theme";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, stylix, ... } @ inputs :let 
