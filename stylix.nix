@@ -2,7 +2,9 @@
 {
   stylix.enable = true;
   stylix.targets.gtk.enable = true;
+  stylix.targets.kde.enable = true;
   stylix.targets.firefox.enable = true;
+
 
   stylix.autoEnable = true;
   # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
@@ -21,4 +23,5 @@
 
   stylix.cursor.package = pkgs.bibata-cursors;
   stylix.cursor.name = "Bibata-Modern-Ice";
+  stylix.cursor.size = 20;
 }

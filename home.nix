@@ -31,29 +31,11 @@
 #    pkgs.jre
 #    pkgs.texliveFull
 #
-#    #SO
+   #SO
    pkgs.localsend
    pkgs.flutter319
-#    pkgs.waybar
-#    pkgs.xdg-desktop-portal
-#    pkgs.papirus-icon-theme
-#    pkgs.evince
-#    pkgs.qt6Packages.qtstyleplugin-kvantum
-#    pkgs.candy-icons
-#    pkgs.wlogout
-#    pkgs.killall
-#    pkgs.jq
-#    pkgs.wmctrl
-#    pkgs.gvfs
-#    pkgs.gnome-text-editor
-#    pkgs.chromium
-#    pkgs.gnome.file-roller
-#    pkgs.python3
-#    pkgs.playerctl
-#    pkgs.pulseaudio
-#    pkgs.eww
-#    pkgs.gnome.adwaita-icon-theme
-#
+   pkgs.gnome.adwaita-icon-theme
+   #
 #    #Miscelanea
 #    pkgs.neofetch
 #    pkgs.wl-clipboard
@@ -82,7 +64,8 @@
     ./programs/tmux.nix
     ./programs/libinput-gestures.nix
     ./stylix.nix
-     ./programs/ags.nix
+    ./programs/ags.nix
+    ./programs/yazi.nix
     ];
 
   
