@@ -1,6 +1,7 @@
 {pkgs, config, ...}:let
 terminal.colors = {
     "DESKTOP-G7U6IGR\n" = "xterm-256color";
+    "nixos\n" = "xterm-256color";
     "pcdrdg\n" = "xterm-kitty";
   };
 in{

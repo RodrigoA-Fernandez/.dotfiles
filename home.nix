@@ -35,6 +35,8 @@
    pkgs.localsend
    pkgs.flutter319
    pkgs.gnome.adwaita-icon-theme
+   pkgs.tmux
+   pkgs.tmuxifier
    #
 #    #Miscelanea
 #    pkgs.neofetch
@@ -46,6 +48,11 @@
 #    pkgs.hunspellDicts.uk_UA
 #    pkgs.hunspellDicts.es_ES
    pkgs.thunderbird
+   pkgs.neovim
+   pkgs.git
+   pkgs.gcc
+   pkgs.unzip
+   pkgs.fzf
  ];
 
   home.sessionVariables = {
