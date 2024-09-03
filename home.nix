@@ -22,6 +22,7 @@
   # };
 
  home.packages = [
+    pkgs.xorg.xclock
 #    #Uni
    pkgs.obsidian
    pkgs.postman
@@ -36,7 +37,10 @@
    pkgs.flutter319
    pkgs.gnome.adwaita-icon-theme
    pkgs.tmux
-   pkgs.tmuxifier
+   pkgs.tmuxinator
+   pkgs.cargo
+   pkgs.ripgrep
+   pkgs.kitty
    #
 #    #Miscelanea
 #    pkgs.neofetch
@@ -48,12 +52,20 @@
 #    pkgs.hunspellDicts.uk_UA
 #    pkgs.hunspellDicts.es_ES
    pkgs.thunderbird
+
+    #Nvim
    pkgs.neovim
    pkgs.git
    pkgs.gcc
    pkgs.unzip
    pkgs.fzf
- ];
+
+
+   #Lorry
+   pkgs.direnv
+    ];
+
+  services.lorri.enable = true;
 
   home.sessionVariables = {
     GTK_USE_PORTAL = "1";
