@@ -12,8 +12,16 @@ home.packages = [
     pkgs.swappy
     pkgs.grim
     pkgs.slurp
+    pkgs.xdg-desktop-portal-hyprland
+    pkgs.xdg-desktop-portal-gtk
 ];
 
+xdg.portal.config = {
+  default = [
+    "hyprland"
+    "gtk"
+  ];
+};
   home.file.".config/hypr/hyprland.conf".text = ''
         exec-once = syncthing 
         exec-once = hyprpaper

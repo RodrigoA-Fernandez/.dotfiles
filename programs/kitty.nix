@@ -1,6 +1,7 @@
 {config, lib, pkgs, stylix, ...}:{
  fonts.fontconfig.enable = true;
  stylix.targets.kitty.enable = true;
+ stylix.targets.kitty.variant256colors = true;
  programs.kitty = {
    enable = false;
    font = {

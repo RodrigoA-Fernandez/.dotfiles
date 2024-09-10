@@ -5,6 +5,9 @@
   stylix.targets.kde.enable = true;
   stylix.targets.firefox.enable = true;
 
+  fonts.fontconfig.defaultFonts.monospace = [
+    "JetBrainsMono"
+  ];
 
   stylix.autoEnable = true;
   # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
@@ -14,8 +17,8 @@
 
   stylix.fonts = {
     monospace = {
-      package = pkgs.nerdfonts.override {fonts =["FiraCode"];};
-      name = "FiraCode";
+      package = pkgs.nerdfonts.override {fonts =["JetBrainsMono"];};
+      name = "JetBrainsMono Nerd Font Mono";
     };
   };
   
