@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, stylix, ... }:
+{ config, pkgs, inputs, stylix, lib, ... }:
 {
    gtk = {
      iconTheme.package = pkgs.gruvbox-plus-icons;
@@ -10,10 +10,6 @@
 
   home.stateVersion = "23.11"; 
 
-  programs.neovim = {
-    enable = false;
-    defaultEditor = true;
-  };
 
   # services.kdeconnect = {
   #   enable = true;
@@ -21,47 +17,56 @@
   #   indicator = true;
   # };
 
- home.packages = [
-    #Uni
-   pkgs.obsidian
-   pkgs.postman
-   pkgs.xournalpp
-#    pkgs.rnote
-#    pkgs.jetbrains.idea-ultimate
-#    pkgs.jre
-#    pkgs.texliveFull
-#
-   #SO
-   pkgs.localsend
-   pkgs.flutter319
-   pkgs.gnome.adwaita-icon-theme
-   pkgs.tmux
-   pkgs.tmuxinator
-   pkgs.cargo
-   pkgs.ripgrep
-   #
-#    #Miscelanea
-#    pkgs.neofetch
-#    pkgs.wl-clipboard
-   pkgs.whatsapp-for-linux
-#    pkgs.gimp
-#    pkgs.libreoffice-qt
-#    pkgs.hunspell
-#    pkgs.hunspellDicts.uk_UA
-#    pkgs.hunspellDicts.es_ES
-   pkgs.thunderbird
+  home.packages = [
+  # pkgs.xterm
+     #Uni
+    pkgs.obsidian
+    pkgs.postman
+    pkgs.xournalpp
+    pkgs.geogebra6
+ #    pkgs.rnote
+ #    pkgs.jetbrains.idea-ultimate
+ #    pkgs.jre
+    pkgs.texliveFull
+ #
+    #SO
+    pkgs.localsend
+    pkgs.flutter319
+    pkgs.adwaita-icon-theme
+    pkgs.tmux
+    pkgs.tmuxinator
+    pkgs.cargo
+    pkgs.ripgrep
+    pkgs.xfce.thunar
+    pkgs.gtk4
+    pkgs.libinput-gestures
+    pkgs.wmctrl
+ #    #Miscelanea
+ #    pkgs.neofetch
+ #    pkgs.wl-clipboard
+    pkgs.whatsapp-for-linux
+ #    pkgs.gimp
+ #    pkgs.libreoffice-qt
+ #    pkgs.hunspell
+ #    pkgs.hunspellDicts.uk_UA
+ #    pkgs.hunspellDicts.es_ES
+    pkgs.thunderbird
 
     #Nvim
-   pkgs.neovim
-   pkgs.git
-   pkgs.gcc
-   pkgs.unzip
-   pkgs.fzf
+    pkgs.neovim
+    pkgs.git
+    pkgs.gcc
+    pkgs.unzip
+    pkgs.fzf
+    pkgs.cbfmt
+    pkgs.tree-sitter
+    pkgs.marksman
+    pkgs.lua-language-server
+    pkgs.stylua
 
-
-   #Lorry
-   pkgs.direnv
-    ];
+    #Lorry
+    pkgs.direnv
+     ];
 
   services.lorri.enable = true;
 
@@ -70,26 +75,20 @@
     EDITOR = "nvim";
   };
 
+
   imports = [
-    # inputs.ags.homeManagerModules.default
-    ./programs/waybar.nix
+    # ./programs/waybar.nix
     ./programs/zsh.nix
     ./programs/hyprland.nix
     ./programs/starship.nix
-    ./programs/rofi.nix
-    ./programs/eww.nix
+    # ./programs/rofi.nix
+    # ./programs/eww.nix
     ./programs/tmux.nix
     ./programs/libinput-gestures.nix
-    ./stylix.nix
     ./programs/ags.nix
     ./programs/yazi.nix
+    ./programs/kitty.nix
     ];
-
-  
-  home.file.".config/nixpkgs/config.nix".text = ''
-    { allowUnfree = true; }
-  '';
-
 
   programs.firefox = {
       enable = true;
@@ -104,7 +103,7 @@
             "browser.search.order.1" = "Google";
 
             "signon.rememberSignons" = false;
-            "widget.use-xdg-desktop-portal.file-picker" = 1;
+            "widget.use-xdg-desktop-portal.file-picker" = 0;
             "browser.aboutConfig.showWarning" = false;
             "browser.compactmode.show" = true;
             "browser.cache.disk.enable" = false; # Be kind to hard drive
@@ -126,6 +125,4 @@
         };
       };
     };
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 }

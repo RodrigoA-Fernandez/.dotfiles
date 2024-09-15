@@ -27,10 +27,10 @@ in {
 		};
 
 		plugins = {
-      "chmod.yazi" = "${plugins-repo}/chmod.yazi";
-      "compress.yazi" = "${compress-repo}";
-      "full-border.yazi" = "${plugins-repo}/full-border.yazi";
-			"max-preview.yazi" = "${plugins-repo}/max-preview.yazi";
+      "chmod" = "${plugins-repo}/chmod.yazi";
+      "compress" = "${compress-repo}";
+      "full-border" = "${plugins-repo}/full-border.yazi";
+			"max-preview" = "${plugins-repo}/max-preview.yazi";
 		};
 
 

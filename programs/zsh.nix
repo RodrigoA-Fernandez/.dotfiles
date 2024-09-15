@@ -8,7 +8,7 @@
     shellAliases = {
       ll = "ls -l";
       # update = "sudo nixos-rebuild switch --flake /etc/nixos";
-      update = "sudo packman -Syu";
+      update = "sudo nixos-rebuild switch --flake /etc/nixos#default --impure";
       home-switch = "home-manager switch --flake ~/.dotfiles/ --extra-experimental-features \"nix-command flakes\" --impure";
       "java-run" = "${pkgs.jetbrains.jdk}/lib/openjdk/bin/java -javaagent:${pkgs.jetbrains.idea-ultimate}/idea-ultimate/lib/idea_rt.jar=38389:${pkgs.jetbrains.idea-ultimate}/idea-ultimate/bin -Dfile.encoding=UTF-8 -classpath";
     };
