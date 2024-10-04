@@ -1,0 +1,21 @@
+return {
+	-- {
+	-- 	"MeanderingProgrammer/markdown.nvim",
+	-- 	main = "render-markdown",
+	-- 	opts = {},
+	-- 	dependencies = {
+	-- 		"nvim-treesitter/nvim-treesitter",
+	-- 		"nvim-tree/nvim-web-devicons",
+	-- 	},
+	-- },
+	-- {
+	-- 	"preservim/vim-markdown",
+	-- 	dependencies = {
+	-- 		"godlygeek/tabular",
+	-- 	},
+	-- 	config = function()
+	-- 		-- vim.cmd("let g:vim_markdown_math = 1")
+	-- 		vim.cmd("let g:vim_markdown_no_extensions_in_markdown = 1")
+	-- 	end,
+	-- },
+}
