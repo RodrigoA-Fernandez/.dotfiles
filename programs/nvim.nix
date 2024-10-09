@@ -11,13 +11,14 @@ programs.neovim = {
         pkgs.luajitPackages.luarocks-nix
         pkgs.imagemagickBig
         pkgs.nil
+        pkgs.rust-analyzer
     ];
       extraLuaConfig = ''
       package.path = "/home/rodrigo/.config/nvim/?.lua;" .. package.path;
       require("old_init")
       
       ''; 
-      plugins = [pkgs.vimPlugins.base16-nvim pkgs.vimPlugins.image-nvim];
+      plugins = [pkgs.vimPlugins.base16-nvim pkgs.vimPlugins.image-nvim pkgs.vimPlugins.rustaceanvim];
     };
  
     home.file.".config/nvim/" = {
@@ -102,5 +103,16 @@ programs.neovim = {
       }'';
     };
 
+    home.file.".config/nvim/lua/custom/plugins/rustacean.lua" = {
+      text = ''
+        return {
+          'mrcjkb/rustaceanvim',
+          dir = "${pkgs.vimPlugins.rustaceanvim}",
+          version = '^5', -- Recommended
+          lazy = false,
+          ft = { 'rust' },
+        }
+      '';
+    };
   
 }
