@@ -60,9 +60,13 @@
     pkgs.fzf
     pkgs.cbfmt
     pkgs.zathura
+    pkgs.neovide
 
     #Lorry
     pkgs.direnv
+
+    pkgs.libnotify
+    (pkgs.callPackage ./programs/latexocr {inherit inputs;})
      ];
 
   services.lorri.enable = true;

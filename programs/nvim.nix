@@ -12,6 +12,7 @@ programs.neovim = {
         pkgs.imagemagickBig
         pkgs.nil
         pkgs.rust-analyzer
+        pkgs.lldb_18
     ];
       extraLuaConfig = ''
       package.path = "/home/rodrigo/.config/nvim/?.lua;" .. package.path;
@@ -27,7 +28,11 @@ programs.neovim = {
      };
 
     home.file.".config/nvim/lua/custom/plugins/image.lua" = {
-      text = ''return {
+      text = ''
+      if vim.g.neovide then
+        return {}
+      end
+      return {
         {
         '3rd/image.nvim',
         dir = "${pkgs.vimPlugins.image-nvim}",
@@ -114,5 +119,17 @@ programs.neovim = {
         }
       '';
     };
+
+    home.file.".config/nvim/lua/custom/plugins/typescript.lua" = {
+      text = ''
+        return {
+          'pmizio/typescript-tools.nvim',
+          dir = "${pkgs.vimPlugins.typescript-tools-nvim}",
+          dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+          opts = {},
+        }
+      '';
+    };
+
   
 }

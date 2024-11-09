@@ -204,6 +204,8 @@ xdg.portal.config = {
             }
 
             sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+            accel_profile = flat
+            kb_options=caps:swapescape
         }
 
         general  {
@@ -297,9 +299,9 @@ xdg.portal.config = {
         bind = ${mainMod}, V, togglefloating, 
         bind = ${mainMod}, C, exec, chromium 
         bind = ${mainMod}, O, exec, obsidian 
-        bind = ${mainMod}, P, pseudo, 
         bind = ${mainMod}, F, fullscreen, 
         # bind = ${mainMod}, S, exec, slurp | grim -g - - | wl-copy  
+        bind = ${mainMod}, T, exec, ~/.config/hypr/latexocr.sh  
         bind = ALT, V, exec, cliphist list | wofi -dmenu | cliphist decode | wl-copy 
         # bind = ${mainMod}, Space, exec, ~/.config/rofi/launcher.sh
         bind = ${mainMod}, Space, exec, ags -t launcher
@@ -313,6 +315,17 @@ xdg.portal.config = {
         bind = ${mainMod} Shift, right, movewindow, r
         bind = ${mainMod} Shift, up, movewindow, u
         bind = ${mainMod} Shift, down, movewindow, d
+
+        bind = ${mainMod}, H, movefocus, l
+        bind = ${mainMod}, L, movefocus, r
+        bind = ${mainMod}, K, movefocus, u
+        bind = ${mainMod}, J, movefocus, d
+
+        bind = ${mainMod} Shift, H, movewindow, l
+        bind = ${mainMod} Shift, L, movewindow, r
+        bind = ${mainMod} Shift, K, movewindow, u
+        bind = ${mainMod} Shift, J, movewindow, d
+
 
         bind = ${mainMod}, 1, workspace, 1
         bind = ${mainMod}, 2, workspace, 2
@@ -340,12 +353,24 @@ xdg.portal.config = {
         bind= ${mainMod}, S,         exec, ags -r 'recorder.screenshot()'
         bind= ${mainMod} SHIFT, S,    exec, ags -r 'recorder.screenshot(true)'
 
-        binde = ${mainMod} Ctrl, left, resizeactive, -10 0
-        binde = ${mainMod} Ctrl, right, resizeactive, 10 0
-        binde = ${mainMod} Ctrl, up, resizeactive, 0 -10
-        binde = ${mainMod} Ctrl, down, resizeactive, 0 10
+        binde = ${mainMod} Ctrl, H, resizeactive, -10 0
+        binde = ${mainMod} Ctrl, L, resizeactive, 10 0
+        binde = ${mainMod} Ctrl, K, resizeactive, 0 -10
+        binde = ${mainMod} Ctrl, H, resizeactive, 0 10
 
         bindm = ${mainMod}, mouse:272, movewindow
         bindm = ${mainMod}, mouse:273, resizewindow
   '';
+
+  home.file.".config/hypr/latexocr.sh".text = ''
+        #!/usr/bin/env bash
+        out=`slurp | grim -g - - > /tmp/texocr.png
+
+        notify-send "Comienzo escaneo LaTeX" 
+        pix2tex /tmp/texocr.png | sed 's/^[^:]*: //'`
+        wl-copy "$out"
+        notify-send "Escaneo LaTeX finalizado"
+    '';
+  
+  home.file.".config/hypr/latexocr.sh".executable = true;
 }
