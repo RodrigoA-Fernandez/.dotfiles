@@ -191,6 +191,9 @@ require('lazy').setup({
         nil_ls = {
           settings = {},
         },
+        clangd = {
+          settings = {},
+        },
       }
       for k, s in pairs(servers) do
         lspconfig[k].setup {
@@ -228,6 +231,25 @@ require('lazy').setup({
           debounce_text_changes = 200,
         },
         capabilities = capabilities,
+      }
+
+      lspconfig.nixd.setup {
+        cmd = { 'nixd' },
+        settings = {
+          nixd = {
+            nixpkgs = {
+              expr = 'import <nixpkgs> { }',
+            },
+            formatting = {
+              command = { 'nixfmt' },
+            },
+            options = {
+              nixos = {
+                expr = '(builtins.getFlake "/etc/nixos/").nixosConfigurations.default.options',
+              },
+            },
+          },
+        },
       }
 
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -311,6 +333,7 @@ require('lazy').setup({
         json = { 'prettierd', 'prettier' },
         markdown = { 'cbfmt' },
         python = { 'black' },
+        rust = { 'rustfmt' },
       },
     },
   },

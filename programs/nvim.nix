@@ -1,92 +1,97 @@
-{ config, pkgs, inputs, ... }:{
-programs.neovim = {
-      enable = true;
-      extraLuaPackages = ps: [ ps.magick ];
-      extraPackages = [
-        pkgs.imagemagick 
-        pkgs.tree-sitter
-        pkgs.marksman
-        pkgs.lua-language-server
-        pkgs.stylua
-        pkgs.luajitPackages.luarocks-nix
-        pkgs.imagemagickBig
-        pkgs.nil
-        pkgs.rust-analyzer
-        pkgs.lldb_18
+{ config, pkgs, inputs, ... }: {
+  programs.neovim = {
+    enable = true;
+    extraLuaPackages = ps: [ ps.magick ];
+    extraPackages = [
+      pkgs.imagemagick
+      pkgs.tree-sitter
+      pkgs.marksman
+      pkgs.lua-language-server
+      pkgs.stylua
+      pkgs.luajitPackages.luarocks-nix
+      pkgs.imagemagickBig
+      pkgs.nil
+      pkgs.rust-analyzer
+      pkgs.lldb_18
+      pkgs.nixd
+      pkgs.nixfmt
     ];
-      extraLuaConfig = ''
+    extraLuaConfig = ''
       package.path = "/home/rodrigo/.config/nvim/?.lua;" .. package.path;
       require("old_init")
-      
-      ''; 
-      plugins = [pkgs.vimPlugins.base16-nvim pkgs.vimPlugins.image-nvim pkgs.vimPlugins.rustaceanvim];
-    };
- 
-    home.file.".config/nvim/" = {
-       source = ../nvim;
-       recursive=true;
-     };
 
-    home.file.".config/nvim/lua/custom/plugins/image.lua" = {
-      text = ''
-      if vim.g.neovide then
-        return {}
-      end
-      return {
-        {
-        '3rd/image.nvim',
-        dir = "${pkgs.vimPlugins.image-nvim}",
-    config = function()
-      package.path = package.path .. ';' .. vim.fn.expand '$HOME' .. '/.luarocks/share/lua/5.1/?/init.lua'
-      package.path = package.path .. ';' .. vim.fn.expand '$HOME' .. '/.luarocks/share/lua/5.1/?.lua'
-      require('image').setup {
-        backend = 'kitty',
-        kitty_method = 'normal',
-        integrations = {
-          markdown = {
-            enabled = true,
-            clear_in_insert_mode = false,
-            download_remote_images = true,
-            only_render_image_at_cursor = true,
-            filetypes = { 'markdown', 'vimwiki'},
+    '';
+    plugins = [
+      pkgs.vimPlugins.base16-nvim
+      pkgs.vimPlugins.image-nvim
+      pkgs.vimPlugins.rustaceanvim
+    ];
+  };
+
+  home.file.".config/nvim/" = {
+    source = ../nvim;
+    recursive = true;
+  };
+
+  home.file.".config/nvim/lua/custom/plugins/image.lua" = {
+    text = ''
+        if vim.g.neovide then
+          return {}
+        end
+        return {
+          {
+          '3rd/image.nvim',
+          dir = "${pkgs.vimPlugins.image-nvim}",
+      config = function()
+        package.path = package.path .. ';' .. vim.fn.expand '$HOME' .. '/.luarocks/share/lua/5.1/?/init.lua'
+        package.path = package.path .. ';' .. vim.fn.expand '$HOME' .. '/.luarocks/share/lua/5.1/?.lua'
+        require('image').setup {
+          backend = 'kitty',
+          kitty_method = 'normal',
+          integrations = {
+            markdown = {
+              enabled = true,
+              clear_in_insert_mode = false,
+              download_remote_images = true,
+              only_render_image_at_cursor = true,
+              filetypes = { 'markdown', 'vimwiki'},
+            },
+            neorg = {
+              enabled = true,
+              clear_in_insert_mode = false,
+              download_remote_images = true,
+              only_render_image_at_cursor = false,
+              filetypes = { 'norg' },
+            },
+            html = {
+              enabled = true,
+            },
+            css = {
+              enabled = true,
+            },
           },
-          neorg = {
-            enabled = true,
-            clear_in_insert_mode = false,
-            download_remote_images = true,
-            only_render_image_at_cursor = false,
-            filetypes = { 'norg' },
-          },
-          html = {
-            enabled = true,
-          },
-          css = {
-            enabled = true,
-          },
-        },
-        max_width = nil,
-        max_height = nil,
-        max_width_window_percentage = nil,
+          max_width = nil,
+          max_height = nil,
+          max_width_window_percentage = nil,
 
-        max_height_window_percentage = 40,
+          max_height_window_percentage = 40,
 
-        window_overlap_clear_enabled = false,
-        window_overlap_clear_ft_ignore = { 'cmp_menu', 'cmp_docs', "" },
+          window_overlap_clear_enabled = false,
+          window_overlap_clear_ft_ignore = { 'cmp_menu', 'cmp_docs', "" },
 
 
-        tmux_show_only_in_active_window = true,
+          tmux_show_only_in_active_window = true,
 
-        hijack_file_patterns = { '*.png', '*.jpg', '*.jpeg', '*.gif', '*.webp', '*.avif' },
-      }
-
-    end,
+          hijack_file_patterns = { '*.png', '*.jpg', '*.jpeg', '*.gif', '*.webp', '*.avif' },
         }
-      }'';
-    };
 
+      end,
+          }
+        }'';
+  };
 
-    home.file.".config/nvim/lua/custom/plugins/markdownPreview.lua" = {
-      text = ''
+  home.file.".config/nvim/lua/custom/plugins/markdownPreview.lua" = {
+    text = ''
       return{{
         'iamcco/markdown-preview.nvim',
         cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
@@ -106,30 +111,29 @@ programs.neovim = {
         end,
       },
       }'';
-    };
+  };
 
-    home.file.".config/nvim/lua/custom/plugins/rustacean.lua" = {
-      text = ''
-        return {
-          'mrcjkb/rustaceanvim',
-          dir = "${pkgs.vimPlugins.rustaceanvim}",
-          version = '^5', -- Recommended
-          lazy = false,
-          ft = { 'rust' },
-        }
-      '';
-    };
+  home.file.".config/nvim/lua/custom/plugins/rustacean.lua" = {
+    text = ''
+      return {
+        'mrcjkb/rustaceanvim',
+        dir = "${pkgs.vimPlugins.rustaceanvim}",
+        version = '^5', -- Recommended
+        lazy = false,
+        ft = { 'rust' },
+      }
+    '';
+  };
 
-    home.file.".config/nvim/lua/custom/plugins/typescript.lua" = {
-      text = ''
-        return {
-          'pmizio/typescript-tools.nvim',
-          dir = "${pkgs.vimPlugins.typescript-tools-nvim}",
-          dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-          opts = {},
-        }
-      '';
-    };
+  home.file.".config/nvim/lua/custom/plugins/typescript.lua" = {
+    text = ''
+      return {
+        'pmizio/typescript-tools.nvim',
+        dir = "${pkgs.vimPlugins.typescript-tools-nvim}",
+        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+        opts = {},
+      }
+    '';
+  };
 
-  
 }

@@ -29,6 +29,12 @@ local latex = {
     t '}',
   }),
 
+  s('bb', {
+    t '\\mathbb{',
+    i(1),
+    t '}',
+  }),
+
   s('bf', {
     t '\\mathbf{',
     i(1),
@@ -70,16 +76,15 @@ local latex = {
   s('@E ', { t '\\epsilon ' }),
   s(':e ', { t '\\varepsilon ' }),
   s(':E ', { t '\\varepsilon ' }),
-  s('@z ', { t '\\zeta ' }),
-  s('@Z ', { t '\\zeta ' }),
-  s('@t ', { t '\\theta ' }),
-  s('@T ', { t '\\Theta ' }),
+  s('@i ', { t '\\iota ' }),
   s('@k ', { t '\\kappa ' }),
   s('@K ', { t '\\kappa ' }),
   s('@l ', { t '\\lambda ' }),
   s('@L ', { t '\\Lambda ' }),
   s('@m ', { t '\\mu ' }),
   s('@M ', { t '\\mu ' }),
+  s('@o ', { t '\\omega ' }),
+  s('@O ', { t '\\Omega ' }),
   s('@p ', { t '\\phi ' }),
   s('@P ', { t '\\Phi ' }),
   s(':p ', { t '\\varphi ' }),
@@ -88,11 +93,16 @@ local latex = {
   s('@R ', { t '\\rho ' }),
   s('@s ', { t '\\sigma ' }),
   s('@S ', { t '\\Sigma ' }),
-  s('@o ', { t '\\omega ' }),
-  s('@O ', { t '\\Omega ' }),
+  s('@T ', { t '\\Theta ' }),
+  s('@t ', { t '\\theta ' }),
+  s(':t ', { t '\\tau ' }),
+  s('@z ', { t '\\zeta ' }),
+  s('@Z ', { t '\\zeta ' }),
 
   --Conjuntos
   s('RR', { t '\\mathbb{R} ' }),
+  s('PP', { t '\\mathbb{P} ' }),
+  s('SS', { t '\\mathbb{S} ' }),
   s('QQ', { t '\\mathbb{Q} ' }),
   s('CC', { t '\\mathbb{C} ' }),
   s('NN', { t '\\mathbb{N} ' }),
@@ -105,13 +115,15 @@ local latex = {
   s('prod', { t '\\prod_{', i(1), t '}^{', i(2), t '}' }),
 
   s('set', { t '\\{', i(1), t '\\}', i(0) }),
-  s('suc', { t '\\{', i(1), t '_n\\}_{n=1}^infty', i(0) }),
+  s('suc', { t '\\{', i(1), t '_', i(2), t '\\}_{', rep(2), t '=', i(3), t '}^\\infty', i(0) }),
   s('ser', { t '\\sum_{n=', i(1), t '}^infty', i(0) }),
   s('avg', { t '\\langle ', i(1), t ' \\rangle', i(0) }),
+  s('lim', { t '\\lim\\limits_{', i(1), t '\\to ', i(2), t '}', i(0) }),
 
   s('comb', { t '{{', i(1), t '}\\choose{', i(2), t '}}', i(0) }),
 
   s('=>', { t '\\implies ' }),
+  s('rightsquigarrow', { t '\\rightsquigarrow ' }),
   s('cdot', { t '\\cdot ' }),
   s('times', { t '\\times ' }),
   s('cap', { t '\\cap ' }),
@@ -132,6 +144,11 @@ local latex = {
   s('simeq', { t '\\simeq ' }),
   s('congruente', { t '\\cong ' }),
   s('aprox', { t '\\approx ' }),
+
+  -- Cursiva y negrita
+  s('i', { t '*', i(1), t '*', i(0) }),
+  s('b', { t '**', i(1), t '**', i(0) }),
+  s('bi', { t '***', i(1), t '***', i(0) }),
 
   --Entornos
   s(
