@@ -171,6 +171,9 @@ require('lazy').setup({
     },
     config = function()
       local lspconfig = require 'lspconfig'
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+
       local servers = {
         -- marksman = {
         --   nombre = 'marksman',
@@ -191,8 +194,33 @@ require('lazy').setup({
         nil_ls = {
           settings = {},
         },
-        clangd = {
+        marksman = {
           settings = {},
+        },
+        pylsp = {
+          settings = {
+            pylsp = {
+              plugins = {
+                -- formatter options
+                black = { enabled = true },
+                autopep8 = { enabled = false },
+                yapf = { enabled = false },
+                -- linter options
+                pylint = { enabled = true, executable = 'pylint' },
+                pyflakes = { enabled = false },
+                pycodestyle = { enabled = false },
+                -- type checker
+                pylsp_mypy = { enabled = true },
+                -- auto-completion options
+                jedi_completion = { fuzzy = true },
+                -- import sorting
+                pyls_isort = { enabled = true },
+              },
+            },
+          },
+          flags = {
+            debounce_text_changes = 200,
+          },
         },
       }
       for k, s in pairs(servers) do
@@ -201,35 +229,38 @@ require('lazy').setup({
         }
       end
 
-      lspconfig.marksman.setup {
-        on_attatch = LspOnAttach,
-        capabilities = LspCapabilities,
-      }
+      -- lspconfig.pylsp.setup {
+      --   settings = {
+      --     pylsp = {
+      --       plugins = {
+      --         -- formatter options
+      --         black = { enabled = true },
+      --         autopep8 = { enabled = false },
+      --         yapf = { enabled = false },
+      --         -- linter options
+      --         pylint = { enabled = true, executable = 'pylint' },
+      --         pyflakes = { enabled = false },
+      --         pycodestyle = { enabled = false },
+      --         -- type checker
+      --         pylsp_mypy = { enabled = true },
+      --         -- auto-completion options
+      --         jedi_completion = { fuzzy = true },
+      --         -- import sorting
+      --         pyls_isort = { enabled = true },
+      --       },
+      --     },
+      --   },
+      --   flags = {
+      --     debounce_text_changes = 200,
+      --   },
+      --   capabilities = capabilities,
+      -- }
 
-      lspconfig.pylsp.setup {
-        settings = {
-          pylsp = {
-            plugins = {
-              -- formatter options
-              black = { enabled = true },
-              autopep8 = { enabled = false },
-              yapf = { enabled = false },
-              -- linter options
-              pylint = { enabled = true, executable = 'pylint' },
-              pyflakes = { enabled = false },
-              pycodestyle = { enabled = false },
-              -- type checker
-              pylsp_mypy = { enabled = true },
-              -- auto-completion options
-              jedi_completion = { fuzzy = true },
-              -- import sorting
-              pyls_isort = { enabled = true },
-            },
-          },
-        },
-        flags = {
-          debounce_text_changes = 200,
-        },
+      lspconfig.clangd.setup {
+        on_attach = function(client, bufnr)
+          client.server_capabilities.signatureHelpProvider = false
+          -- LspOnAttach(client, bufnr)
+        end,
         capabilities = capabilities,
       }
 
@@ -293,9 +324,6 @@ require('lazy').setup({
           end
         end,
       })
-
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
     end,
   },
 
@@ -318,7 +346,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = { c = true }
         return {
           timeout_ms = 500,
           lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
