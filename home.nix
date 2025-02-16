@@ -68,6 +68,8 @@
 
     pkgs.libnotify
     (pkgs.callPackage ./programs/latexocr { inherit inputs; })
+
+    pkgs.wineWowPackages.stable
   ];
 
   services.lorri.enable = true;

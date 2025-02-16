@@ -194,9 +194,7 @@ require('lazy').setup({
         nil_ls = {
           settings = {},
         },
-        marksman = {
-          settings = {},
-        },
+
         pylsp = {
           settings = {
             pylsp = {
@@ -255,6 +253,11 @@ require('lazy').setup({
       --   },
       --   capabilities = capabilities,
       -- }
+
+      lspconfig.marksman.setup {
+        root_dir = lspconfig.util.root_pattern '.obsidian',
+        settings = {},
+      }
 
       lspconfig.clangd.setup {
         on_attach = function(client, bufnr)
