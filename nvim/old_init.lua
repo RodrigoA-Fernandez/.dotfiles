@@ -90,7 +90,7 @@ require('lazy').setup({
       require('which-key').add {
         { '<leader>c', group = '[C]ode' },
         { '<leader>d', group = '[D]ocument' },
-        { '<leader>r', group = '[R]ename' },
+        { '<leader>r', group = '[R]un/ename' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>w', group = '[W]orkspace' },
@@ -191,6 +191,9 @@ require('lazy').setup({
             },
           },
         },
+        r_language_server = {
+          settings = {},
+        },
         nil_ls = {
           settings = {},
         },
@@ -227,37 +230,10 @@ require('lazy').setup({
         }
       end
 
-      -- lspconfig.pylsp.setup {
-      --   settings = {
-      --     pylsp = {
-      --       plugins = {
-      --         -- formatter options
-      --         black = { enabled = true },
-      --         autopep8 = { enabled = false },
-      --         yapf = { enabled = false },
-      --         -- linter options
-      --         pylint = { enabled = true, executable = 'pylint' },
-      --         pyflakes = { enabled = false },
-      --         pycodestyle = { enabled = false },
-      --         -- type checker
-      --         pylsp_mypy = { enabled = true },
-      --         -- auto-completion options
-      --         jedi_completion = { fuzzy = true },
-      --         -- import sorting
-      --         pyls_isort = { enabled = true },
-      --       },
-      --     },
-      --   },
-      --   flags = {
-      --     debounce_text_changes = 200,
-      --   },
-      --   capabilities = capabilities,
+      -- lspconfig.marksman.setup {
+      --   root_dir = lspconfig.util.root_pattern '.obsidian',
+      --   settings = {},
       -- }
-
-      lspconfig.marksman.setup {
-        root_dir = lspconfig.util.root_pattern '.obsidian',
-        settings = {},
-      }
 
       lspconfig.clangd.setup {
         on_attach = function(client, bufnr)

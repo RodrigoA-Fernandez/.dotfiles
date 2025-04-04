@@ -35,6 +35,12 @@ local latex = {
     t '}',
   }),
 
+  s('sc', {
+    t '\\mathscr{',
+    i(1),
+    t '}',
+  }),
+
   s('bf', {
     t '\\mathbf{',
     i(1),
@@ -125,6 +131,7 @@ local latex = {
   s('=>', { t '\\implies ' }),
   s('rightsquigarrow', { t '\\rightsquigarrow ' }),
   s('cdot', { t '\\cdot ' }),
+  s('circ', { t '\\circ ' }),
   s('times', { t '\\times ' }),
   s('cap', { t '\\cap ' }),
   s('cup', { t '\\cup ' }),
@@ -167,17 +174,33 @@ local latex = {
       { repeat_duplicates = true }
     )
   ),
+
+  s('inv', {
+    t '^{-1}',
+  }),
 }
 
-local function crearBloque(cad)
-  return s(
-    '> ' .. cad,
-    fmt(
-      [[
+local function crearBloque(cad, name, vacio)
+  if vacio == 1 then
+    return s(
+      '> ' .. name,
+      fmt(
+        [[
   > [!{}] {}
   > {}
   ]],
-      { t(cad), i(1), i(0) }
+        { t(cad), i(1), i(0) }
+      )
+    )
+  end
+  return s(
+    '> ' .. name,
+    fmt(
+      [[
+  > [!{}] {} {}
+  > {}
+  ]],
+      { t(cad), t(name), i(1), i(0) }
     )
   )
 end
@@ -193,13 +216,13 @@ local md = {
       { i(1), i(2), i(0) }
     )
   ),
-  crearBloque 'Definición',
-  crearBloque 'Proposición',
-  crearBloque 'Teorema',
-  crearBloque 'Corolario',
-  crearBloque 'Demostración',
-  crearBloque 'Nota',
-  crearBloque 'Example',
+  crearBloque('definition', 'Definición', 1),
+  crearBloque('proposition', 'Proposición', 0),
+  crearBloque('theorem', 'Teorema', 0),
+  crearBloque('corollary', 'Corolario', 0),
+  crearBloque('proof', 'Demostración', 0),
+  crearBloque('note', 'Nota', 0),
+  crearBloque('example', 'Ejemplo', 0),
 }
 
 ls.add_snippets('markdown', latex)

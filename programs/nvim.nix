@@ -15,6 +15,8 @@
       pkgs.lldb_18
       pkgs.nixd
       pkgs.nixfmt
+      pkgs.cargo
+      pkgs.rustc
     ];
     extraLuaConfig = ''
       package.path = "/home/rodrigo/.config/nvim/?.lua;" .. package.path;
@@ -25,6 +27,7 @@
       pkgs.vimPlugins.base16-nvim
       pkgs.vimPlugins.image-nvim
       pkgs.vimPlugins.rustaceanvim
+      pkgs.vimPlugins.sniprun
     ];
   };
 
@@ -136,4 +139,49 @@
     '';
   };
 
+  home.file.".config/nvim/lua/custom/plugins/markdown.lua" = {
+    text = ''
+      return {{
+        'MeanderingProgrammer/render-markdown.nvim',
+        dir = "${pkgs.vimPlugins.render-markdown-nvim}",
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+        opts = {
+          latex = { enabled = false },
+          
+          },
+        config = function()
+            require('render-markdown').setup(opts)
+        end,
+      },
+      }
+    '';
+  };
+
+  # home.file.".config/nvim/lua/custom/plugins/sniprun.lua" = {
+  #   text = ''
+  #     return {
+  #       'michaelb/sniprun',
+  #       run = "sh ${pkgs.vimPlugins.sniprun}/install.sh 1",
+  #       dir = "${pkgs.vimPlugins.sniprun}",
+  #       binary_path="${pkgs.vimPlugins.sniprun}/target/release/sniprun",
+  #       ft = {"r", "rmb"},
+  #       config = function()
+  #
+  #             vim.print("AAA")
+  #             require("sniprun").setup({
+  #               display = {"TempFloatingWindow"},
+  #               interpreter_options = {
+  #                 R_original = {
+  #                   use_on_filetypes =  {"rmb", "r"}
+  #                 },
+  #               },
+  #             })
+  #
+  #             vim.api.nvim_set_keymap('v', '<leader>rs', '<Plug>SnipRun', {silent = true})
+  #             vim.api.nvim_set_keymap('n', '<leader>rs', '<Plug>SnipRun', {silent = true})
+  #             vim.api.nvim_set_keymap('n', '<leader>rf', '<Plug>SnipRunOperator', {silent = true})
+  #       end,
+  #     }
+  #   '';
+  # };
 }
