@@ -227,4 +227,5 @@ local md = {
 
 ls.add_snippets('markdown', latex)
 ls.add_snippets('markdown', md)
+ls.add_snippets('rmd', latex)
 ls.add_snippets('latex', latex)

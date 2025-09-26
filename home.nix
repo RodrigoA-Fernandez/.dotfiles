@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, stylix, lib, ... }: {
+{
+  pkgs,
+  stylix,
+  ...
+}:
+{
   gtk = {
     iconTheme.package = pkgs.gruvbox-plus-icons;
     iconTheme.name = "Gruvbox-Plus-Dark";
@@ -7,13 +12,7 @@
   home.username = "rodrigo";
   home.homeDirectory = "/home/rodrigo";
 
-  home.stateVersion = "24.11";
-
-  # services.kdeconnect = {
-  #   enable = true;
-  #   package = pkgs.kdePackages.kdeconnect-kde;
-  #   indicator = true;
-  # };
+  home.stateVersion = "23.11";
 
   home.packages = [
     # pkgs.xterm
@@ -21,15 +20,13 @@
     pkgs.obsidian
     pkgs.postman
     pkgs.xournalpp
-    pkgs.geogebra
-    #    pkgs.rnote
+    pkgs.geogebra6
+    pkgs.nerd-fonts.jetbrains-mono
     #    pkgs.jetbrains.idea-ultimate
-    #    pkgs.jre
     pkgs.texliveFull
     #
     #SO
     pkgs.localsend
-    pkgs.flutter319
     pkgs.adwaita-icon-theme
     pkgs.tmux
     pkgs.tmuxinator
@@ -40,61 +37,41 @@
     pkgs.libinput-gestures
     pkgs.wmctrl
     #    #Miscelanea
-    #    pkgs.neofetch
-    #    pkgs.wl-clipboard
     pkgs.whatsapp-for-linux
-    #    pkgs.gimp
-    pkgs.libreoffice-qt
-    #    pkgs.hunspell
-    #    pkgs.hunspellDicts.uk_UA
-    #    pkgs.hunspellDicts.es_ES
     pkgs.thunderbird
 
     #Nvim
-    # pkgs.neovim
     pkgs.git
     pkgs.gcc
     pkgs.unzip
     pkgs.fzf
     pkgs.cbfmt
-    pkgs.zathura
-    pkgs.neovide
+    pkgs.tree-sitter
+    pkgs.marksman
+    pkgs.lua-language-server
+    pkgs.stylua
 
-    pkgs.dotnet-runtime_8
-    # pkgs.dotnet-sdk_8
-
-    #Lorry
-    pkgs.direnv
-
-    pkgs.libnotify
-    (pkgs.callPackage ./programs/latexocr { inherit inputs; })
-
-    pkgs.wineWowPackages.stable
+    pkgs.chromium
   ];
-
-  services.lorri.enable = true;
 
   home.sessionVariables = {
     GTK_USE_PORTAL = "1";
     EDITOR = "nvim";
-    PKG_CONFIG_PATH = "${pkgs.luajitPackages.magick}/lib/";
   };
 
   imports = [
     # ./programs/waybar.nix
     ./programs/zsh.nix
-    ./programs/nvim.nix
     ./programs/hyprland.nix
     ./programs/starship.nix
-    # ./programs/rofi.nix
-    # ./programs/eww.nix
+    ./programs/rofi.nix
     ./programs/tmux.nix
     ./programs/libinput-gestures.nix
-    ./programs/ags.nix
+    ./programs/hyprpanel.nix
     ./programs/yazi.nix
     ./programs/kitty.nix
+    ./programs/nvim.nix
   ];
-
   programs.firefox = {
     enable = true;
     profiles = {
@@ -103,9 +80,8 @@
         name = "default";
         isDefault = true;
         settings = {
-          # "browser.startup.homepage" = "https://duckduckgo.com";
-          "browser.search.defaultenginename" = "Google";
-          "browser.search.order.1" = "Google";
+          "browser.search.defaultenginename" = "google";
+          "browser.search.order.1" = "google";
 
           "signon.rememberSignons" = false;
           "widget.use-xdg-desktop-portal.file-picker" = 0;
@@ -124,10 +100,13 @@
         };
         search = {
           force = true;
-          default = "Google";
-          order = [ "Google" ];
+          default = "google";
+          order = [ "google" ];
         };
       };
     };
   };
+  stylix.targets.firefox.profileNames = [
+    "default"
+  ];
 }

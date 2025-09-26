@@ -1,58 +1,64 @@
-{pkgs, ...}: let
-	plugins-repo = pkgs.fetchFromGitHub {
-		owner = "yazi-rs";
-		repo = "plugins";
-		rev = "06e5fe1c7a2a4009c483b28b298700590e7b6784";
-		hash = "sha256-jg8+GDsHOSIh8QPYxCvMde1c1D9M78El0PljSerkLQc=";
-	};
+{ pkgs, lib, ... }:
+let
   compress-repo = pkgs.fetchFromGitHub {
     owner = "KKV9";
     repo = "compress.yazi";
-    rev = "878b876b2ff0d48741eb3a4c4c2f149e962af43c";
-    hash = "sha256-HDJ1qQtWzVZwv0AK4ZZoeMOIR+RAq0OvlMhYiV/CxHw=";
+    rev = "c2646395394f22b6c40bff64dc4c8c922d210570";
+    hash = "sha256-qAuMD4YojLfVaywurk5uHLywRRF77U2F7ql+gR8B/lo=";
   };
-in {
-	programs.yazi = {
-		enable = true;
-		enableZshIntegration = true;
+in
+{
+  home.packages = [
 
-		settings = {
-			manager = {
-				show_hidden = true;
-			};
-			preview = {
-				max_width = 1000;
-				max_height = 1000;
-			};
-		};
+  ];
+  programs.yazi = {
+    enable = true;
+    enableZshIntegration = true;
 
-		plugins = {
-      "chmod" = "${plugins-repo}/chmod.yazi";
+    settings = {
+      manager = {
+        show_hidden = true;
+      };
+      preview = {
+        max_width = 1000;
+        max_height = 1000;
+      };
+    };
+
+    plugins = {
+      "chmod" = pkgs.yaziPlugins.chmod;
       "compress" = "${compress-repo}";
-      "full-border" = "${plugins-repo}/full-border.yazi";
-			"max-preview" = "${plugins-repo}/max-preview.yazi";
-		};
+      "full-border" = pkgs.yaziPlugins.full-border;
+    };
 
+    keymap = {
+      manager.prepend_keymap = [
+        {
+          on = [
+            "c"
+            "a"
+          ];
+          run = "plugin compress";
+          desc = "Comprimir los archivos seleccionados.";
+        }
+        {
+          on = [
+            "c"
+            "p"
+          ];
+          run = "plugin command";
+          desc = "Run command Prompt";
+        }
+        {
+          on = [
+            "c"
+            "m"
+          ];
+          run = "plugin chmod";
+          desc = "Chmod on selected files";
+        }
 
-		keymap = {
-			manager.prepend_keymap = [
-				{
-					on = ["c" "a"];
-					run = "plugin compress";
-					desc = "Comprimir los archivos seleccionados.";
-				}
-        {
-					on = ["c" "p"];
-					run = "plugin command";
-					desc = "Run command Prompt";
-				}
-        {
-					on = ["c" "m"];
-					run = "plugin chmod";
-					desc = "Chmod on selected files";
-				}
-    
-			];
-		};
-	};
+      ];
+    };
+  };
 }

@@ -1,31 +1,38 @@
-{ config, pkgs, inputs, stylix, ... }:
+{ config, pkgs, ... }:
 {
-  stylix.enable = true;
-  # stylix.targets.gtk.enable = true;
-  # stylix.targets.kde.enable = true;
-  # stylix.targets.firefox.enable = true;
-  stylix.image = ./images/wallpaper.jpg;
+  # Habilitamos Stylix
+  stylix = {
+    enable = true;
+    autoEnable = true;
+    polarity = "dark";
 
-  fonts.fontconfig.defaultFonts.monospace = [
-    "JetBrainsMono"
-  ];
+    # Imagen de fondo
+    image = ./images/wallpaper.jpg;
 
-  stylix.autoEnable = true;
-  # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
-  # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/bright.yaml";
+    # Esquema de colores
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
 
-  stylix.fonts = {
-    monospace = {
-      package = pkgs.nerdfonts.override {fonts =["JetBrainsMono"];};
-      name = "JetBrainsMono Nerd Font Mono";
+    # Fuentes
+    fonts = {
+      monospace = {
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font Mono";
+      };
+    };
+
+    # Cursor
+    cursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+      size = 20;
+    };
+
+    # Targets (aplicaciones/entornos)
+    targets = {
+      gtk.enable = true;
+      # kde.enable = true;
+      # hyprland.enable = false;
     };
   };
-  
-  stylix.polarity = "dark";
-
-  stylix.cursor.package = pkgs.bibata-cursors;
-  stylix.cursor.name = "Bibata-Modern-Ice";
-  stylix.cursor.size = 20;
-  # stylix.targets.hyprland.enable = false;
+  fonts.fontconfig.defaultFonts.monospace = [ "JetBrainsMono" ];
 }

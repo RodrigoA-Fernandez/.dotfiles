@@ -1,4 +1,8 @@
-{ config, pkgs, inputs, ... }: {
+{
+  pkgs,
+  ...
+}:
+{
   programs.neovim = {
     enable = true;
     extraLuaPackages = ps: [ ps.magick ];
@@ -18,11 +22,12 @@
       pkgs.cargo
       pkgs.rustc
     ];
+
     extraLuaConfig = ''
       package.path = "/home/rodrigo/.config/nvim/?.lua;" .. package.path;
       require("old_init")
-
     '';
+
     plugins = [
       pkgs.vimPlugins.base16-nvim
       pkgs.vimPlugins.image-nvim
@@ -133,7 +138,7 @@
       return {
         'pmizio/typescript-tools.nvim',
         dir = "${pkgs.vimPlugins.typescript-tools-nvim}",
-        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+        dependencies = { "nvim-lua/plenary.nvim" },
         opts = {},
       }
     '';
@@ -147,41 +152,41 @@
         dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
         opts = {
           latex = { enabled = false },
-          
           },
+
         config = function()
             require('render-markdown').setup(opts)
         end,
-      },
+      }}
+    '';
+  };
+
+  home.file.".config/nvim/lua/custom/plugins/jdtls.lua" = {
+    text = ''
+      return {
+        "mfussenegger/nvim-jdtls",
+        ft = "java",  -- solo carga para archivos Java
+        dependencies = { "mfussenegger/nvim-dap" },
+        config = function()
+          local jdtls = require("jdtls")
+          local config = {
+            cmd = { "jdtls" },
+            root_dir = vim.fs.root(0, { ".git", "mvnw", "gradlew" }),
+            settings = { java = {} },
+            init_options = { bundles = {} },
+          }
+          jdtls.start_or_attach(config)
+
+          vim.keymap.set("n", "<leader>co", jdtls.organize_imports, { desc = "Organize Imports" })
+          vim.keymap.set("n", "<leader>crv", jdtls.extract_variable, { desc = "Extract Variable" })
+          vim.keymap.set("v", "<leader>crv", function() jdtls.extract_variable(true) end)
+          vim.keymap.set("n", "<leader>crc", jdtls.extract_constant, { desc = "Extract Constant" })
+          vim.keymap.set("v", "<leader>crc", function() jdtls.extract_constant(true) end)
+          vim.keymap.set("v", "<leader>crm", function() jdtls.extract_method(true) end)
+          vim.keymap.set("n", "<leader>d", function() jdtls.extract_method(true) end)
+        end,
       }
     '';
   };
 
-  # home.file.".config/nvim/lua/custom/plugins/sniprun.lua" = {
-  #   text = ''
-  #     return {
-  #       'michaelb/sniprun',
-  #       run = "sh ${pkgs.vimPlugins.sniprun}/install.sh 1",
-  #       dir = "${pkgs.vimPlugins.sniprun}",
-  #       binary_path="${pkgs.vimPlugins.sniprun}/target/release/sniprun",
-  #       ft = {"r", "rmb"},
-  #       config = function()
-  #
-  #             vim.print("AAA")
-  #             require("sniprun").setup({
-  #               display = {"TempFloatingWindow"},
-  #               interpreter_options = {
-  #                 R_original = {
-  #                   use_on_filetypes =  {"rmb", "r"}
-  #                 },
-  #               },
-  #             })
-  #
-  #             vim.api.nvim_set_keymap('v', '<leader>rs', '<Plug>SnipRun', {silent = true})
-  #             vim.api.nvim_set_keymap('n', '<leader>rs', '<Plug>SnipRun', {silent = true})
-  #             vim.api.nvim_set_keymap('n', '<leader>rf', '<Plug>SnipRunOperator', {silent = true})
-  #       end,
-  #     }
-  #   '';
-  # };
 }

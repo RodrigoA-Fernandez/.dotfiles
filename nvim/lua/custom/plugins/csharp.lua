@@ -1,21 +1,4 @@
 return {
-  -- {
-  --   'Decodetalkers/csharpls-extended-lsp.nvim',
-  --   ft = { 'cs' },
-  --   config = function()
-  --     local pid = vim.fn.getpid()
-  --
-  --     local config = {
-  --       handlers = {
-  --         ['textDocument/definition'] = require('csharpls_extended').handler,
-  --         ['textDocument/typeDefinition'] = require('csharpls_extended').handler,
-  --       },
-  --       cmd = { 'csharp-ls' },
-  --     }
-  --
-  --     require('lspconfig').csharp_ls.setup(config)
-  --   end,
-  -- },
   {
     'Hoffs/omnisharp-extended-lsp.nvim',
     config = function()
