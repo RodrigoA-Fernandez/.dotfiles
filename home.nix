@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   stylix,
   ...
 }:
@@ -26,13 +27,11 @@
     pkgs.texliveFull
     #
     #SO
-    pkgs.localsend
     pkgs.adwaita-icon-theme
     pkgs.tmux
     pkgs.tmuxinator
     pkgs.cargo
     pkgs.ripgrep
-    pkgs.xfce.thunar
     pkgs.gtk4
     pkgs.libinput-gestures
     pkgs.wmctrl
@@ -52,11 +51,16 @@
     pkgs.stylua
 
     pkgs.chromium
+
+    pkgs.xfce.exo
+    pkgs.gvfs
+    pkgs.udisks2
   ];
 
   home.sessionVariables = {
     GTK_USE_PORTAL = "1";
     EDITOR = "nvim";
+    XDG_MENU_PREFIX = lib.mkForce "plasma-";
   };
 
   imports = [
@@ -71,6 +75,7 @@
     ./programs/yazi.nix
     ./programs/kitty.nix
     ./programs/nvim.nix
+    ./programs/dolphin.nix
   ];
   programs.firefox = {
     enable = true;
@@ -109,4 +114,41 @@
   stylix.targets.firefox.profileNames = [
     "default"
   ];
+
+  systemd.user.services.udiskie = {
+
+    serviceConfig = {
+    };
+  };
+
+  systemd.user.services.attic-watch-store = {
+    Unit = {
+      Description = "Udiskie automount";
+      After = [ "graphical-session.target" ];
+      Restart = "on-failure";
+    };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.udiskie}/bin/udiskie --tray --automount --notify";
+    };
+  };
+
+  xdg.enable = true;
+  xdg.mimeApps = {
+    enable = true;
+    associations.added = {
+      "application/x-terminal" = [ "kitty.desktop" ];
+      "application/zip" = [ "org.kde.ark.desktop" ];
+      "application/x-zip-compressed" = [ "org.kde.ark.desktop" ];
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+    };
+    defaultApplications = {
+      "application/x-terminal" = [ "kitty.desktop" ];
+      "application/zip" = [ "org.kde.ark.desktop" ];
+      "application/x-zip-compressed" = [ "org.kde.ark.desktop" ];
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+    };
+  };
 }

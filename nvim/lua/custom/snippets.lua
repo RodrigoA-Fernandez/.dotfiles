@@ -122,7 +122,7 @@ local latex = {
 
   s('set', { t '\\{', i(1), t '\\}', i(0) }),
   s('suc', { t '\\{', i(1), t '_', i(2), t '\\}_{', rep(2), t '=', i(3), t '}^\\infty', i(0) }),
-  s('ser', { t '\\sum_{n=', i(1), t '}^infty', i(0) }),
+  s('ser', { t '\\sum_{n=', i(1), t '}^\\infty', i(0) }),
   s('avg', { t '\\langle ', i(1), t ' \\rangle', i(0) }),
   s('lim', { t '\\lim\\limits_{', i(1), t '\\to ', i(2), t '}', i(0) }),
 

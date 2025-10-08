@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   pkgs,
   lib,
   ...
@@ -28,7 +27,6 @@ let
   colorDisbledButton = "#${colors.base04}";
   colorConfirm = "#${colors.base0B}";
   colorDeny = "#${colors.base0F}";
-
 in
 {
   programs.hyprpanel = {
@@ -1043,4 +1041,96 @@ in
       "menus.clock.weather.location" = "Valladolid";
     };
   };
+
+  programs.wlogout = {
+    enable = true;
+    style = ''
+      * {
+      	background-image: none;
+      	transition: 0;
+      }
+      window {
+      	background-color: rgba(12, 12, 12, 0.1);
+      }
+      button {
+        color: ${colorText};
+      	background-color: ${colorBg};
+      	border: 0.2rem solid ${colorUrgent};
+      	border-radius: 1rem;
+      	margin: 0.8rem;
+      	background-repeat: no-repeat;
+      	background-position: center 20%;
+      	background-size: 20%;
+      	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      	font-family: ${fonts.monospace.name};
+      	font-size: 1.7rem;
+      }
+
+      button:focus, button:active, button:hover {
+      	background-color: ${colorBgAlt};
+      	outline-style: none;
+      }
+
+      #lock {
+          background-image: url("file:///home/${config.home.username}/.config/wlogout/icons/generated/lock.png");
+      }
+
+      #logout {
+          background-image: url("file:///home/${config.home.username}/.config/wlogout/icons/generated/logout.png");
+      }
+
+      #suspend {
+          background-image: url("file:///home/${config.home.username}/.config/wlogout/icons/generated/pause.png");
+      }
+
+      #hibernate {
+          background-image: url("file:///home/${config.home.username}/.config/wlogout/icons/generated/hibernate.png");
+      }
+
+      #shutdown {
+          background-image: url("file:///home/${config.home.username}/.config/wlogout/icons/generated/shutdown.png");
+      }
+
+      #reboot {
+          background-image: url("file:///home/${config.home.username}/.config/wlogout/icons/generated/reboot.png");
+      }
+    '';
+  };
+
+  home.activation.recolorIcons = lib.hm.dag.entryAfter [ "writeHomeFiles" ] ''
+    #!/usr/bin/env bash
+    set -e
+
+    SVG_DIR="$HOME/.config/wlogout/icons/original"
+    OUT_DIR="$HOME/.config/wlogout/icons/generated"
+
+    mkdir -p "$OUT_DIR"
+
+    # Usamos la variable Nix pasada al script
+    COLOR="${colorText}"
+
+    for svg in "$SVG_DIR"/*.svg; do
+      base=$(basename "$svg" .svg)
+      # Reemplaza el fill por el color de la variable Nix
+      cp "$svg" "$OUT_DIR/''${base}.svg"
+      
+      sed -E -i \
+        -e "s/fill=\"#[0-9a-fA-F]{3,6}\"/fill=\"$COLOR\"/g" \
+        -e "s/fill:#[0-9a-fA-F]{3,6}/fill:$COLOR/g" \
+        -e "s/stroke=\"#[0-9a-fA-F]{3,6}\"/stroke=\"$COLOR\"/g" \
+        -e "s/stroke:#[0-9a-fA-F]{3,6}/stroke:$COLOR/g" \
+        "$OUT_DIR/''${base}.svg"
+      # Opcional: generar PNG
+      ${pkgs.librsvg}/bin/rsvg-convert -w 128 -h 128 "$OUT_DIR/''${base}.svg" > "$OUT_DIR/''${base}.png"
+    done
+  '';
+
+  home.file.".config/wlogout/icons/original/shutdown.svg".source = ./wlogout/shutdown.svg;
+  home.file.".config/wlogout/icons/original/pause.svg".source = ./wlogout/pause.svg;
+  home.file.".config/wlogout/icons/original/lock.svg".source = ./wlogout/lock.svg;
+  home.file.".config/wlogout/icons/original/logout.svg".source = ./wlogout/logout.svg;
+  home.file.".config/wlogout/icons/original/reboot.svg".source = ./wlogout/reboot.svg;
+  home.file.".config/wlogout/icons/original/hibernate.svg".source = ./wlogout/hibernate.svg;
+
+  home.packages = [ pkgs.librsvg ];
 }

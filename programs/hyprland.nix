@@ -26,13 +26,14 @@ in
     ];
   };
   home.file.".config/hypr/hyprland.conf".text = ''
-    exec-once = syncthing 
+    exec-once = hyprpanel 
+    exec-once = syncthingtray --wait
     exec-once = hyprpaper
-    exec-once = systemctl --user enable opentabletdriver.service --now
+    exec-once = syncthing 
+    # exec-once = systemctl --user enable opentabletdriver.service --now
     exec-once = libinput-gestures
-    exec-once = hyprpanel
-
-    debug:disable_logs = false
+    # exec-once = localsend_app --hidden
+    exec-once = kdeconnect-indicator
 
     input {
         kb_layout = es
@@ -42,7 +43,7 @@ in
         }
 
         sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
-        accel_profile = flat
+        accel_profile = flatwayland
         kb_options=caps:swapescape
     }
 
@@ -98,26 +99,20 @@ in
     gesture = 3, horizontal, workspace
 
 
-    # Example windowrule v1
-    windowrule = float, title:^(thunar)$
+    windowrule = float, class:^(org.kde.dolphin)$
     windowrule = float, title:^(btop)$
     windowrule = float, title:^(update-sys)$
+    windowrule = float, title: ^(KDE Connect)$
 
-    windowrulev2 = opacity 0.8 0.8,class:^(kitty)$
-    windowrulev2 = animation popin,class:^(kitty)$,title:^(update-sys)$
-    windowrulev2 = animation popin,class:^(thunar)$
-    windowrulev2 = opacity 0.8 0.8,class:^(thunar)$
-    windowrulev2 = opacity 0.8 0.8,class:^(VSCodium)$
-    windowrulev2 = animation popin,class:^(chromium)$
-    windowrulev2 = move cursor -3% -105%,class:^(wofi)$
-    windowrulev2 = noanim,class:^(wofi)$
-    windowrulev2 = opacity 0.8 0.6,class:^(wofi)$
+    windowrule = opacity 0.8,class:^(kitty)$
+    windowrule = animation popin,class:^(org.kde.dolphin)$
+    windowrule = animation popin,class:^(chromium-browser)$
 
     bind = ${mainMod}, Q, exec, kitty
     bind = ALT, F4, killactive,
-    bind = ${mainMod}, M, exec, ags -t powermenu
+    bind = ${mainMod}, M, exec, wlogout
     bind = ${mainMod} SHIFT, M, exit,
-    bind = ${mainMod}, E, exec, thunar
+    bind = ${mainMod}, E, exec, dolphin
     bind = ${mainMod}, V, togglefloating,
     bind = ${mainMod}, C, exec, chromium
     bind = ${mainMod}, O, exec, obsidian
