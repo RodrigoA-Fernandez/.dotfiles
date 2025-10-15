@@ -170,7 +170,6 @@ require('lazy').setup({
       { 'folke/neodev.nvim', opts = {} },
     },
     config = function()
-      local lspconfig = require 'lspconfig'
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
@@ -180,6 +179,7 @@ require('lazy').setup({
         -- },
 
         lua_ls = {
+          filetypes = { 'lua' },
           nombre = 'lua_ls',
           settings = {
             Lua = {
@@ -192,13 +192,15 @@ require('lazy').setup({
           },
         },
         r_language_server = {
+          filetypes = { 'r' },
           settings = {},
         },
-        nil_ls = {
-          settings = {},
-        },
+        -- nil_ls = {
+        --   settings = {},
+        -- },
 
         pylsp = {
+          filetypes = { 'py' },
           settings = {
             pylsp = {
               plugins = {
@@ -223,45 +225,50 @@ require('lazy').setup({
             debounce_text_changes = 200,
           },
         },
+        nixd = {
+          filetypes = { 'nix' },
+          cmd = { 'nixd' },
+          settings = {
+            nixd = {
+              nixpkgs = {
+                expr = 'import <nixpkgs> { }',
+              },
+              formatting = {
+                command = { 'nixfmt' },
+              },
+              options = {
+                nixos = {
+                  expr = '(builtins.getFlake "/etc/nixos/").nixosConfigurations.default.options',
+                },
+              },
+            },
+          },
+        },
+        clangd = {
+          filetypes = { 'c', 'cpp' },
+          cmd = { 'clangd', '--compile-commands-dir=build' },
+          on_attach = function(client, bufnr)
+            client.server_capabilities.signatureHelpProvider = false
+            -- LspOnAttach(client, bufnr)
+          end,
+          capabilities = capabilities,
+        },
       }
       for k, s in pairs(servers) do
-        lspconfig[k].setup {
-          settings = s.settings,
-        }
+        vim.lsp.config(k, s)
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = s.filetypes,
+          callback = function()
+            local config = vim.lsp.config(k, s)
+            vim.lsp.start(s)
+          end,
+        })
       end
 
       -- lspconfig.marksman.setup {
       --   root_dir = lspconfig.util.root_pattern '.obsidian',
       --   settings = {},
       -- }
-
-      lspconfig.clangd.setup {
-        cmd = { 'clangd', '--compile-commands-dir=build' },
-        on_attach = function(client, bufnr)
-          client.server_capabilities.signatureHelpProvider = false
-          -- LspOnAttach(client, bufnr)
-        end,
-        capabilities = capabilities,
-      }
-
-      lspconfig.nixd.setup {
-        cmd = { 'nixd' },
-        settings = {
-          nixd = {
-            nixpkgs = {
-              expr = 'import <nixpkgs> { }',
-            },
-            formatting = {
-              command = { 'nixfmt' },
-            },
-            options = {
-              nixos = {
-                expr = '(builtins.getFlake "/etc/nixos/").nixosConfigurations.default.options',
-              },
-            },
-          },
-        },
-      }
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -341,7 +348,7 @@ require('lazy').setup({
         json = { 'prettierd', 'prettier' },
         markdown = { 'cbfmt' },
         python = { 'black' },
-        rust = { 'rustfmt' },
+        rust = { 'clippy' },
         cpp = { 'clang-format' },
       },
     },

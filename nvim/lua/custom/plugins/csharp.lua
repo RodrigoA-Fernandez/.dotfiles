@@ -57,7 +57,7 @@ return {
           },
         },
       }
-      require('lspconfig').omnisharp.setup(config)
+      vim.lsp.config('omnisharp', config)
     end,
   },
 }

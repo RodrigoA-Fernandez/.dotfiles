@@ -22,7 +22,6 @@
     history.size = 10000;
     history.path = "${config.xdg.dataHome}/zsh/history";
     initContent = ''
-      eval "$(starship init zsh)"
       eval "$(direnv hook zsh)"
 
       export PATH="$HOME/go/bin:$PATH"

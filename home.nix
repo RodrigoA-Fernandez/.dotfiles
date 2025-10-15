@@ -20,7 +20,6 @@
     #Uni
     pkgs.obsidian
     pkgs.postman
-    pkgs.xournalpp
     pkgs.geogebra6
     pkgs.nerd-fonts.jetbrains-mono
     #    pkgs.jetbrains.idea-ultimate
@@ -55,6 +54,10 @@
     pkgs.xfce.exo
     pkgs.gvfs
     pkgs.udisks2
+
+    pkgs.nix-direnv-flakes
+
+    pkgs.zathura
   ];
 
   home.sessionVariables = {
@@ -75,7 +78,7 @@
     ./programs/yazi.nix
     ./programs/kitty.nix
     ./programs/nvim.nix
-    ./programs/dolphin.nix
+    ./programs/nautilus.nix
   ];
   programs.firefox = {
     enable = true;
@@ -135,20 +138,36 @@
     };
   };
 
-  xdg.enable = true;
-  xdg.mimeApps = {
+  xdg = {
     enable = true;
-    associations.added = {
-      "application/x-terminal" = [ "kitty.desktop" ];
-      "application/zip" = [ "org.kde.ark.desktop" ];
-      "application/x-zip-compressed" = [ "org.kde.ark.desktop" ];
-      "x-scheme-handler/http" = [ "firefox.desktop" ];
+
+    desktopEntries = {
+      "zathura" = {
+        name = "Zathura";
+        exec = "${pkgs.zathura}/bin/zathura %u";
+        type = "Application";
+        noDisplay = true;
+        mimeType = [ "application/pdf" ];
+      };
     };
-    defaultApplications = {
-      "application/x-terminal" = [ "kitty.desktop" ];
-      "application/zip" = [ "org.kde.ark.desktop" ];
-      "application/x-zip-compressed" = [ "org.kde.ark.desktop" ];
-      "x-scheme-handler/http" = [ "firefox.desktop" ];
+    mimeApps = {
+      enable = true;
+      associations.added = {
+        "application/x-terminal" = [ "kitty.desktop" ];
+        "application/zip" = [ "org.kde.ark.desktop" ];
+        "application/pdf" = [ "zathura.desktop" ];
+        "application/x-zip-compressed" = [ "org.kde.ark.desktop" ];
+        "x-scheme-handler/http" = [ "firefox.desktop" ];
+        "x-scheme-handler/kdeconnect" = [ "kdeconnect-handler.desktop" ];
+      };
+      defaultApplications = {
+        "application/x-terminal" = [ "kitty.desktop" ];
+        "application/pdf" = [ "zathura.desktop" ];
+        "application/zip" = [ "org.kde.ark.desktop" ];
+        "application/x-zip-compressed" = [ "org.kde.ark.desktop" ];
+        "x-scheme-handler/http" = [ "firefox.desktop" ];
+        "x-scheme-handler/kdeconnect" = [ "kdeconnect-handler.desktop" ];
+      };
     };
   };
 }

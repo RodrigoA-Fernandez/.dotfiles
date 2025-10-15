@@ -67,13 +67,14 @@ in
     	/*****----- Configuration -----*****/
     	configuration {
     		modi:                       "drun,filebrowser,window";
-    	    show-icons:                 true;
-    	    display-drun:               "Apps";
-    	    display-run:                "Run";
-    	    display-filebrowser:        "Files";
-    	    display-window:             "Windows";
+        show-icons:                 true;
+        display-drun:               "Apps";
+        display-run:                "Run";
+        display-filebrowser:        "Files";
+        display-window:             "Windows";
     		drun-display-format:        "{name}\n[<span weight='light' size='small'><i>({generic})</i></span>]";
     		window-format:              "Class : {c}\nWorkspace : {w}";
+        terminal: "kitty";
     	}
 
     	/*****----- Global Properties -----*****/

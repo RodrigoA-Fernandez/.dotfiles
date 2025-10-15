@@ -8,9 +8,6 @@ let
   };
 in
 {
-  home.packages = [
-
-  ];
   programs.yazi = {
     enable = true;
     enableZshIntegration = true;
@@ -29,7 +26,11 @@ in
       "chmod" = pkgs.yaziPlugins.chmod;
       "compress" = "${compress-repo}";
       "full-border" = pkgs.yaziPlugins.full-border;
+      "git" = pkgs.yaziPlugins.git;
+      "smart-enter" = pkgs.yaziPlugins.smart-enter;
+      "mount" = pkgs.yaziPlugins.mount;
     };
+    initLua = '''';
 
     keymap = {
       manager.prepend_keymap = [
@@ -48,6 +49,11 @@ in
           ];
           run = "plugin command";
           desc = "Run command Prompt";
+        }
+        {
+          on = [ "l" ];
+          run = "plugin smart-enter";
+          desc = "Enter the child directory, or open the file.";
         }
         {
           on = [

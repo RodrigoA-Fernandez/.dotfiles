@@ -57,7 +57,6 @@ in
             left = [
               "dashboard"
               "windowtitle"
-              "media"
               "systray"
             ];
             middle = [ "workspaces" ];
@@ -67,7 +66,6 @@ in
               "battery"
               "bluetooth"
               "clock"
-              "hypridle"
               "notifications"
             ];
           };
@@ -147,6 +145,11 @@ in
               "com.github.th_ch.youtube_music"
               "󰗃"
               "YT Music"
+            ]
+            [
+              "org.kde.kdeconnect.app"
+              ""
+              "KDE Connect"
             ]
           ];
           "truncation" = true;
@@ -248,8 +251,8 @@ in
         "transition" = "crossfade";
         "volume" = {
           "raiseMaximumVolume" = false;
-          "scrollDown" = "hyprpanel vol -5";
-          "scrollUp" = "hyprpanel vol +5";
+          "scrollDown" = "hyprpanel vol +5";
+          "scrollUp" = "hyprpanel vol -5";
         };
       };
 

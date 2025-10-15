@@ -14,9 +14,10 @@ in
     pkgs.grim
     pkgs.slurp
     pkgs.xdg-desktop-portal-hyprland
-    pkgs.xdg-desktop-portal-gtk
+    pkgs.xdg-utils
     pkgs.libnotify
     pkgs.cliphist
+    pkgs.sshfs
   ];
 
   xdg.portal.config = {
@@ -34,6 +35,7 @@ in
     exec-once = libinput-gestures
     # exec-once = localsend_app --hidden
     exec-once = kdeconnect-indicator
+    exec = wl-paste --watch cliphist store
 
     input {
         kb_layout = es
@@ -119,7 +121,7 @@ in
     bind = ${mainMod}, F, fullscreen,
     bind = ${mainMod}, S, exec, slurp | grim -g - - | wl-copy
     bind = ${mainMod}, T, exec, ~/.config/hypr/latexocr.s
-    bind = ALT, V, exec, cliphist list | wofi -dmenu | cliphist decode | wl-copy
+    bind = ALT, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy
     bind = ${mainMod}, Space, exec, ~/.config/rofi/launcher.sh
 
     bind = ${mainMod}, left, movefocus, l
@@ -190,4 +192,8 @@ in
     '';
     executable = true;
   };
+
+  home.file.".config/hypr/hyprpaper.conf".text = ''
+    wallpaper = ,${../images/wallpaper.jpg}
+  '';
 }
